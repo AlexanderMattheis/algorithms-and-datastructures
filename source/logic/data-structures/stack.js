@@ -15,17 +15,27 @@ var Stack = /** @class */ (function () {
         }
     };
     Stack.prototype.pop = function () {
-        if (this._top >= 0) {
-            return this._array[this._top--] = undefined;
+        if (this._top > 0) {
+            var lastTop = --this._top;
+            var value = this._array[lastTop];
+            this._array[this._top] = undefined;
+            return value;
         }
         return null;
     };
     Stack.prototype.peek = function () {
-        if (this._top >= 0) {
-            return this._array[this._top];
+        if (this._top > 0) {
+            return this._array[this._top - 1];
         }
         return null;
     };
+    Object.defineProperty(Stack.prototype, "top", {
+        get: function () {
+            return this._top;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Stack;
 }());
 exports.default = Stack;

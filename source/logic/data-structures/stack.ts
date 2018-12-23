@@ -20,18 +20,25 @@ export default class Stack<T> {
     }
 
     public pop(): T {
-        if (this._top >= 0) {
-            return this._array[this._top--] = undefined;
+        if (this._top > 0) {
+            let lastTop: number = --this._top;
+            let value = this._array[lastTop];
+            this._array[this._top] = undefined;
+            return value;
         }
 
         return null;
     }
 
     public peek(): T {
-        if (this._top >= 0) {
-            return this._array[this._top];
+        if (this._top > 0) {
+            return this._array[this._top - 1];
         }
 
         return null;
+    }
+
+    public get top(): number {
+        return this._top ;
     }
 }
