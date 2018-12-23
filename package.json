@@ -1,0 +1,17 @@
+{
+  "name": "Algorithms",
+  "version": "1.0.0",
+  "dependencies": {
+    "typescript": "^3.1.6"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1"
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register scripts/tests/**/*.spec.ts"
+  }
+}
