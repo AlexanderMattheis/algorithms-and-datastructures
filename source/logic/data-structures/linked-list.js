@@ -88,6 +88,15 @@ var LinkedList = /** @class */ (function (_super) {
             }
         }
     };
+    LinkedList.prototype.getAllValues = function () {
+        var values = new Array(this.count);
+        var currentNode = this._startNode;
+        for (var i = 0; i < values.length; i++) {
+            values[i] = currentNode.value;
+            currentNode = currentNode.next;
+        }
+        return values;
+    };
     return LinkedList;
 }(data_structure_1.default));
 exports.default = LinkedList;
