@@ -71,11 +71,9 @@ var DoublyLinkedList = /** @class */ (function (_super) {
         var currentNode = this._startNode;
         if (position === 0) { // remove first
             this.removeFirst();
-            this.count--;
         }
         else if (position === this.count - 1) { // removing last
             this.removeLast();
-            this.count--;
         }
         else if (position > 0 && position < this.count) {
             // search position
@@ -91,19 +89,25 @@ var DoublyLinkedList = /** @class */ (function (_super) {
     DoublyLinkedList.prototype.removeFirst = function () {
         if (this.count > 0) {
             this._startNode = this._startNode.next;
-            this._startNode.previous = undefined;
+            if (this._startNode !== null) {
+                this._startNode.previous = undefined;
+            }
             if (this.count === 1) { // change pointer of lastNode
                 this._lastNode = undefined;
             }
+            this.count--;
         }
     };
     DoublyLinkedList.prototype.removeLast = function () {
         if (this.count > 0) {
             this._lastNode = this._lastNode.previous;
-            this._lastNode.next = undefined;
+            if (this._lastNode !== null) {
+                this._lastNode.next = undefined;
+            }
             if (this.count === 1) { // change pointer of firstNode
                 this._startNode = undefined;
             }
+            this.count--;
         }
     };
     return DoublyLinkedList;

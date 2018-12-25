@@ -13,26 +13,33 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var linked_list_1 = require("./linked-list");
-var node_1 = require("../node");
+var doubly_linked_list_1 = require("./doubly-linked-list");
 var ListQueue = /** @class */ (function (_super) {
     __extends(ListQueue, _super);
     function ListQueue() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ListQueue.prototype.enqueue = function (element) {
-        this._startNode = new node_1.default(element, this._startNode, undefined);
+        this.append(element);
     };
     /**
      * Removes last position and shifts everything once to the right.
      */
     ListQueue.prototype.dequeue = function () {
+        if (this._startNode !== null) {
+            var startNode = this._startNode;
+            this.removeFirst();
+            return startNode.value;
+        }
         return null;
     };
     ListQueue.prototype.front = function () {
+        if (this._count > 0) {
+            return this._startNode.value;
+        }
         return null;
     };
     return ListQueue;
-}(linked_list_1.default));
+}(doubly_linked_list_1.default));
 exports.default = ListQueue;
 //# sourceMappingURL=list-queue.js.map

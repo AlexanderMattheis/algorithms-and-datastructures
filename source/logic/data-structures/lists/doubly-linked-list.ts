@@ -56,10 +56,8 @@ export default class DoublyLinkedList<T> extends DataStructure<T> {
 
         if (position === 0) {  // remove first
             this.removeFirst();
-            this.count--;
         } else if (position === this.count - 1) {  // removing last
             this.removeLast();
-            this.count--;
         } else if (position > 0 && position < this.count) {
             // search position
             for (let i: number = 0; i < position; i++) {
@@ -74,27 +72,35 @@ export default class DoublyLinkedList<T> extends DataStructure<T> {
         }
     }
 
-    private removeFirst(): void {
+    protected removeFirst(): void {
         if (this.count > 0) {
             this._startNode = this._startNode.next;
 
-            this._startNode.previous = undefined;
+            if (this._startNode !== null) {
+                this._startNode.previous = undefined;
+            }
 
             if (this.count === 1) {  // change pointer of lastNode
                 this._lastNode = undefined;
             }
+
+            this.count--;
         }
     }
 
-    private removeLast(): void {
+    protected removeLast(): void {
         if (this.count > 0) {
             this._lastNode = this._lastNode.previous;
 
-            this._lastNode.next = undefined;
+            if (this._lastNode !== null) {
+                this._lastNode.next = undefined;
+            }
 
             if (this.count === 1) {  // change pointer of firstNode
                 this._startNode = undefined;
             }
+
+            this.count--;
         }
     }
 }

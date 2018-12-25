@@ -4,10 +4,10 @@ import 'mocha';
 import DoublyLinkedList from "../../../../source/logic/data-structures/lists/doubly-linked-list";
 import Node from "../../../../source/logic/data-structures/node";
 
-function getAllValues(list: DoublyLinkedList<number>, count: number, fromEnd?: boolean): number[] {
+function getAllValues(list: DoublyLinkedList<number>, count: number, fromRightEnd?: boolean): number[] {
     let values: number[] = new Array(count);
 
-    if (fromEnd) {
+    if (fromRightEnd) {
         let currentNode: Node<number> = list.leaf;
 
         for (let i: number = values.length - 1; i >= 0; i--) {
@@ -26,7 +26,7 @@ function getAllValues(list: DoublyLinkedList<number>, count: number, fromEnd?: b
     return values;
 }
 
-describe('Linked List', () => {
+describe('Doubly Linked List', () => {
 
     it('Inserting somewhere inside.', () => {
         let testList: DoublyLinkedList<number> = new DoublyLinkedList();  // size: 5 !

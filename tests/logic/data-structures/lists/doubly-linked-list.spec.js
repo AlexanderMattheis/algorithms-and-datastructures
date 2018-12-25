@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var chai_1 = require("chai");
 require("mocha");
 var doubly_linked_list_1 = require("../../../../source/logic/data-structures/lists/doubly-linked-list");
-function getAllValues(list, count, fromEnd) {
+function getAllValues(list, count, fromRightEnd) {
     var values = new Array(count);
-    if (fromEnd) {
+    if (fromRightEnd) {
         var currentNode = list.leaf;
         for (var i = values.length - 1; i >= 0; i--) {
             values[i] = currentNode.value;
@@ -21,7 +21,7 @@ function getAllValues(list, count, fromEnd) {
     }
     return values;
 }
-describe('Linked List', function () {
+describe('Doubly Linked List', function () {
     it('Inserting somewhere inside.', function () {
         var testList = new doubly_linked_list_1.default(); // size: 5 !
         testList.append(5);
