@@ -88,15 +88,13 @@ var LinkedList = /** @class */ (function (_super) {
             }
         }
     };
-    LinkedList.prototype.getAllValues = function () {
-        var values = new Array(this.count);
-        var currentNode = this._startNode;
-        for (var i = 0; i < values.length; i++) {
-            values[i] = currentNode.value;
-            currentNode = currentNode.next;
-        }
-        return values;
-    };
+    Object.defineProperty(LinkedList.prototype, "root", {
+        get: function () {
+            return this._startNode;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return LinkedList;
 }(data_structure_1.default));
 exports.default = LinkedList;

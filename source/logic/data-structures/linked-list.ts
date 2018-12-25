@@ -84,16 +84,7 @@ export default class LinkedList<T> extends DataStructure<T> {
         }
     }
 
-    public getAllValues(): T[] {
-        let values: T[] = new Array(this.count);
-
-        let currentNode: Node<T> = this._startNode;
-
-        for (let i: number = 0; i < values.length; i++) {
-            values[i] = currentNode.value;
-            currentNode = currentNode.next;
-        }
-
-        return values;
+    public get root(): Node<T> {
+        return this._startNode;
     }
 }
