@@ -1,42 +1,46 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Stack = /** @class */ (function () {
-    function Stack(size) {
-        this._array = new Array(size);
-        this._size = size;
-        this._top = 0;
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
     }
-    Stack.prototype.isEmpty = function () {
-        return this._top == 0;
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var limited_structure_1 = require("./limited-structure");
+var Stack = /** @class */ (function (_super) {
+    __extends(Stack, _super);
+    function Stack(size) {
+        return _super.call(this, size) || this;
+    }
     Stack.prototype.push = function (element) {
-        if (this._top < this._size) {
-            this._array[this._top++] = element;
+        if (this._count < this._size) {
+            this._array[this._count] = element;
+            this._count++;
         }
     };
     Stack.prototype.pop = function () {
-        if (this._top > 0) {
-            var lastTop = --this._top;
-            var value = this._array[lastTop];
-            this._array[this._top] = undefined;
-            return value;
+        if (this._count > 0) {
+            this._count--;
+            var temp = this._array[this._count];
+            //this._array[this._count] = undefined;
+            return temp;
         }
         return null;
     };
-    Stack.prototype.peek = function () {
-        if (this._top > 0) {
-            return this._array[this._top - 1];
+    Stack.prototype.top = function () {
+        if (this._count > 0) {
+            return this._array[this._count - 1];
         }
         return null;
     };
-    Object.defineProperty(Stack.prototype, "top", {
-        get: function () {
-            return this._top;
-        },
-        enumerable: true,
-        configurable: true
-    });
     return Stack;
-}());
+}(limited_structure_1.default));
 exports.default = Stack;
 //# sourceMappingURL=stack.js.map
