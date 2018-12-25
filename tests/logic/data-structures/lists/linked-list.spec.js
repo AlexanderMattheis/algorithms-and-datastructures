@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var chai_1 = require("chai");
 require("mocha");
-var linked_list_1 = require("../../../source/logic/data-structures/linked-list");
+var linked_list_1 = require("../../../../source/logic/data-structures/lists/linked-list");
 function getAllValues(startNode, count) {
     var values = new Array(count);
     var currentNode = startNode;

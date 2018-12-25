@@ -1,6 +1,6 @@
-import LimitedStructure from "./limited-structure";
+import FiniteStructure from "../finite-structure";
 
-export default class Queue<T> extends LimitedStructure<T> {  // FIFO: First In - First Out
+export default class Queue<T> extends FiniteStructure<T> {  // FIFO: First In - First Out
 
     public constructor(size: number) {
         super(size);

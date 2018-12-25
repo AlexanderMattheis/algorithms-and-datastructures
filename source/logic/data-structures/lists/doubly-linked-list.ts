@@ -1,28 +1,30 @@
-import DataStructure from "./data-structure";
-import Node from "./substructures/node";
+import DataStructure from "../data-structure";
+import Node from "../node";
 
-export default class LinkedList<T> extends DataStructure<T> {
-    private _startNode: Node<T>;
-    private _lastNode: Node<T>;
+export default class DoublyLinkedList<T> extends DataStructure<T> {
+    protected _startNode: Node<T>;
+    protected _lastNode: Node<T>;
 
-    /**
-     * Appends at the last position.
-     */
+    public get root(): Node<T> {
+        return this._startNode;
+    }
+
+    public get leaf(): Node<T> {
+        return this._lastNode;
+    }
+
     public append(value: T): void {
         if (this._startNode === undefined) {
             this._startNode = new Node<T>(value);
             this._lastNode = this._startNode;
         } else {
-            this._lastNode.next = new Node<T>(value);
+            this._lastNode.next = new Node<T>(value, null, this._lastNode);
             this._lastNode = this._lastNode.next;
         }
 
         this.count++;
     }
 
-    /**
-     * Inserts after the given node position.
-     */
     public insert(value: T, position: number): void {
         let currentNode: Node<T> = this._startNode;
 
@@ -37,7 +39,10 @@ export default class LinkedList<T> extends DataStructure<T> {
 
             // insert
             let oldNextNode: Node<T> = currentNode.next;
-            currentNode.next = new Node<T>(value, oldNextNode);
+            let newNode: Node<T> = new Node<T>(value, oldNextNode, currentNode);
+
+            currentNode.next.previous = newNode;
+            currentNode.next = newNode;
 
             this.count++;
         }
@@ -52,22 +57,18 @@ export default class LinkedList<T> extends DataStructure<T> {
         if (position === 0) {  // remove first
             this.removeFirst();
             this.count--;
+        } else if (position === this.count - 1) {  // removing last
+            this.removeLast();
+            this.count--;
         } else if (position > 0 && position < this.count) {
-            let previousNode: Node<T> = new Node<T>();
-
             // search position
             for (let i: number = 0; i < position; i++) {
-                previousNode = currentNode;
                 currentNode = currentNode.next;
             }
 
             // remove
-            previousNode.next = currentNode.next;
-            // currentNode = undefined;  // not necessary since no more in data-structure after leaving this function
-
-            if (position === this.count - 1) {  // after removing last
-                this._lastNode = previousNode;
-            }
+            currentNode.previous.next = currentNode.next;
+            currentNode.next.previous = currentNode.previous;
 
             this.count--;
         }
@@ -75,16 +76,25 @@ export default class LinkedList<T> extends DataStructure<T> {
 
     private removeFirst(): void {
         if (this.count > 0) {
-            let nextNode: Node<T> = this._startNode.next;
-            this._startNode = nextNode;
+            this._startNode = this._startNode.next;
+
+            this._startNode.previous = undefined;
 
             if (this.count === 1) {  // change pointer of lastNode
-                this._lastNode = nextNode;
+                this._lastNode = undefined;
             }
         }
     }
 
-    public get root(): Node<T> {
-        return this._startNode;
+    private removeLast(): void {
+        if (this.count > 0) {
+            this._lastNode = this._lastNode.previous;
+
+            this._lastNode.next = undefined;
+
+            if (this.count === 1) {  // change pointer of firstNode
+                this._startNode = undefined;
+            }
+        }
     }
 }

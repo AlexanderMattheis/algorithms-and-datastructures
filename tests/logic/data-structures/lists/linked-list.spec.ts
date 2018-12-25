@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import LinkedList from "../../../source/logic/data-structures/linked-list";
-import Node from "../../../source/logic/data-structures/substructures/node";
+import LinkedList from "../../../../source/logic/data-structures/lists/linked-list";
+import Node from "../../../../source/logic/data-structures/node";
 
-function getAllValues(startNode:Node<number>, count: number): number[] {
+function getAllValues(startNode: Node<number>, count: number): number[] {
     let values: number[] = new Array(count);
 
     let currentNode: Node<number> = startNode;
@@ -31,7 +31,7 @@ describe('Linked List', () => {
     });
 
     it('Inserting in an empty list.', () => {
-        let testList:LinkedList<number> = new LinkedList();
+        let testList: LinkedList<number> = new LinkedList();
 
         testList.insert(10, 0);
 
@@ -39,7 +39,7 @@ describe('Linked List', () => {
     });
 
     it('Inserting after the last position.', () => {
-        let testList:LinkedList<number> = new LinkedList();
+        let testList: LinkedList<number> = new LinkedList();
 
         testList.append(5);
         testList.append(6);
@@ -50,7 +50,7 @@ describe('Linked List', () => {
     });
 
     it('Inserting at a non-existent too high position.', () => {
-        let testList:LinkedList<number> = new LinkedList();
+        let testList: LinkedList<number> = new LinkedList();
 
         testList.append(5);
         testList.append(6);
@@ -61,7 +61,7 @@ describe('Linked List', () => {
     });
 
     it('Delete somewhere inside.', () => {
-        let testList:LinkedList<number> = new LinkedList();
+        let testList: LinkedList<number> = new LinkedList();
 
         testList.append(5);
         testList.append(6);
@@ -72,7 +72,7 @@ describe('Linked List', () => {
     });
 
     it('Delete at the start.', () => {
-        let testList:LinkedList<number> = new LinkedList();
+        let testList: LinkedList<number> = new LinkedList();
 
         testList.append(5);
         testList.append(6);
@@ -83,7 +83,7 @@ describe('Linked List', () => {
     });
 
     it('Delete at the end.', () => {
-        let testList:LinkedList<number> = new LinkedList();
+        let testList: LinkedList<number> = new LinkedList();
 
         testList.append(5);
         testList.append(6);

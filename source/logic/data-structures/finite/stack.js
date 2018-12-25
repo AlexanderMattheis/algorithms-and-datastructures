@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var limited_structure_1 = require("./limited-structure");
+var finite_structure_1 = require("../finite-structure");
 var Stack = /** @class */ (function (_super) {
     __extends(Stack, _super);
     function Stack(size) {
@@ -28,9 +28,7 @@ var Stack = /** @class */ (function (_super) {
     Stack.prototype.pop = function () {
         if (this._count > 0) {
             this._count--;
-            var temp = this._array[this._count];
-            //this._array[this._count] = undefined;
-            return temp;
+            return this._array[this._count];
         }
         return null;
     };
@@ -41,6 +39,6 @@ var Stack = /** @class */ (function (_super) {
         return null;
     };
     return Stack;
-}(limited_structure_1.default));
+}(finite_structure_1.default));
 exports.default = Stack;
 //# sourceMappingURL=stack.js.map

@@ -13,8 +13,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var data_structure_1 = require("./data-structure");
-var node_1 = require("./substructures/node");
+var data_structure_1 = require("../data-structure");
+var node_1 = require("../node");
 var LinkedList = /** @class */ (function (_super) {
     __extends(LinkedList, _super);
     function LinkedList() {
@@ -50,7 +50,7 @@ var LinkedList = /** @class */ (function (_super) {
             }
             // insert
             var oldNextNode = currentNode.next;
-            currentNode.next = new node_1.default(value, oldNextNode);
+            currentNode.next = new node_1.default(value, oldNextNode, undefined);
             this.count++;
         }
     };
@@ -81,10 +81,9 @@ var LinkedList = /** @class */ (function (_super) {
     };
     LinkedList.prototype.removeFirst = function () {
         if (this.count > 0) {
-            var nextNode = this._startNode.next;
-            this._startNode = nextNode;
+            this._startNode = this._startNode.next;
             if (this.count === 1) { // change pointer of lastNode
-                this._lastNode = nextNode;
+                this._lastNode = undefined;
             }
         }
     };

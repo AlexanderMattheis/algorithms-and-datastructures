@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var chai_1 = require("chai");
 require("mocha");
-var stack_1 = require("../../../source/logic/data-structures/stack");
+var stack_1 = require("../../../../source/logic/data-structures/finite/stack");
 describe('Stack', function () {
     it('Adding too many elements.', function () {
         var testStack = new stack_1.default(5); // size: 5 !

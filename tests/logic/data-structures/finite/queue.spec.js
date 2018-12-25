@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var chai_1 = require("chai");
 require("mocha");
-var queue_1 = require("../../../source/logic/data-structures/queue");
+var queue_1 = require("../../../../source/logic/data-structures/finite/queue");
 describe('Queue', function () {
     it('Adding too many elements.', function () {
         var testQueue = new queue_1.default(5); // size: 5 !

@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var limited_structure_1 = require("./limited-structure");
+var finite_structure_1 = require("../finite-structure");
 var Queue = /** @class */ (function (_super) {
     __extends(Queue, _super);
     function Queue(size) {
@@ -44,6 +44,6 @@ var Queue = /** @class */ (function (_super) {
         return null;
     };
     return Queue;
-}(limited_structure_1.default));
+}(finite_structure_1.default));
 exports.default = Queue;
 //# sourceMappingURL=queue.js.map

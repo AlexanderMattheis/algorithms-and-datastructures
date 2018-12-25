@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import Queue from '../../../source/logic/data-structures/queue';
+import Queue from '../../../../source/logic/data-structures/finite/queue';
 
 describe('Queue', () => {
 

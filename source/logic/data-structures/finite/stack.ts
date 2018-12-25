@@ -1,6 +1,6 @@
-import LimitedStructure from "./limited-structure";
+import FiniteStructure from "../finite-structure";
 
-export default class Stack<T> extends LimitedStructure<T> {  // LIFO: Last In - First Out
+export default class Stack<T> extends FiniteStructure<T> {  // LIFO: Last In - First Out
 
     public constructor(size: number) {
         super(size);
@@ -17,9 +17,7 @@ export default class Stack<T> extends LimitedStructure<T> {  // LIFO: Last In - 
         if (this._count > 0) {
             this._count--;
 
-            let temp = this._array[this._count];
-            //this._array[this._count] = undefined;
-            return temp;
+            return this._array[this._count];
         }
 
         return null;
