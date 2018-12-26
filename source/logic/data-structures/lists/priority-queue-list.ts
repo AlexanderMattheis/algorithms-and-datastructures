@@ -3,7 +3,7 @@ import DoublyLinkedList from "./doubly-linked-list";
 
 export default class PriorityQueueList<T> extends DoublyLinkedList<T> {
 
-    public insert(element: T, priority: number): void {
+    public enqueue(element: T, priority: number): void {
         let nodeNumber: number = 0;
 
         if (this._startNode !== undefined) {
@@ -54,29 +54,56 @@ export default class PriorityQueueList<T> extends DoublyLinkedList<T> {
     }
 
     public dequeue(): T {
-        let minValue: T = this._lastNode.value;
+        let highestPriorityElement: T = this._lastNode.value;
         this.removeLast();
-        this.count--;
-        return minValue;
+        return highestPriorityElement;
     }
 
     public remove(element: T): void {
         let previousNode: Node<T>;
         let currentNode: Node<T> = this._startNode;
 
-        while(currentNode !== undefined) {
-            previousNode = currentNode;
-            currentNode = currentNode.next;
+        // @ts-ignore
+        if (this._lastNode.value.equals(element)) {  // deletion at the front
+            let noPrevious: boolean = this._lastNode.previous === undefined;
 
-            // @ts-ignore
-            if (currentNode.value.equals(element)) {
-                currentNode.next.previous = previousNode;
-                previousNode.next = currentNode.next;
-                break;
+            if (noPrevious) {
+                this._lastNode = undefined;
+                this._startNode = this._lastNode;
+            } else {  // reference previous.next to undefined
+                this._lastNode.previous.next = undefined;
+                this._lastNode = this._lastNode.previous;  // new last node
+            }
+
+            this.count--;
+        }
+        // @ts-ignore
+        else if(this._startNode.value.equals(element)) {  // deletion at the back
+            let noNext: boolean = this._startNode.next === undefined;
+
+            if (noNext) {
+                this._startNode = undefined;
+                this._lastNode = this._startNode;
+            } else {  // reference previous.next to undefined
+                this._startNode.next.previous = undefined;
+                this._startNode = this._startNode.next;  // new start node
+            }
+
+            this.count--;
+        } else {
+            while(currentNode !== undefined) {
+                // @ts-ignore
+                if (currentNode.value.equals(element)) {
+                    currentNode.next.previous = previousNode;
+                    previousNode.next = currentNode.next;
+                    this.count--;
+                    break;
+                }
+
+                previousNode = currentNode;
+                currentNode = currentNode.next;
             }
         }
-
-        this.count--;
     }
 
     public front(): T {
@@ -91,12 +118,12 @@ export default class PriorityQueueList<T> extends DoublyLinkedList<T> {
         let currentNode: Node<T> = this._startNode;
 
         while(currentNode !== undefined) {
-            currentNode = currentNode.next;
-
             // @ts-ignore
             if (currentNode.value.equals(element)) {
                 return true;
             }
+
+            currentNode = currentNode.next;
         }
 
         return false;

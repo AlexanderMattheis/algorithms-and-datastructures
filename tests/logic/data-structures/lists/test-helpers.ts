@@ -1,15 +1,19 @@
+import DoublyLinkedList from "../../../../source/logic/data-structures/lists/doubly-linked-list";
+import Node from "../../../../source/logic/data-structures/node";
+import PathNode from "../../../../source/logic/algorithms/path-finding/path-node";
+import PriorityQueueList from "../../../../source/logic/data-structures/lists/priority-queue-list";
+
 export default class TestHelpers {
-    public static getLinkedListValues(startNode: Node<number>, count: number): number[] {
-        let values: number[] = new Array(count);
+    public static fillQueue(nodes: PathNode[]): PriorityQueueList<PathNode> {
+        let testQueue: PriorityQueueList<PathNode> = new PriorityQueueList();
 
-        let currentNode: Node<number> = startNode;
+        testQueue.enqueue(nodes[0], 2);
+        testQueue.enqueue(nodes[1], 1);
+        testQueue.enqueue(nodes[2], 3.5);
+        testQueue.enqueue(nodes[3], 2.4);
+        testQueue.enqueue(nodes[4], 3.2);
 
-        for (let i: number = 0; i < values.length; i++) {
-            values[i] = currentNode.value;
-            currentNode = currentNode.next;
-        }
-
-        return values;
+        return testQueue;
     }
 
     public static getDoublyLinkedListValues<T>(list: DoublyLinkedList<T>, count: number, fromRightEnd?: boolean): T[] {
@@ -32,6 +36,29 @@ export default class TestHelpers {
         }
 
         return values;
+    }
+
+    public static getLinkedListValues(startNode: Node<number>, count: number): number[] {
+        let values: number[] = new Array(count);
+
+        let currentNode: Node<number> = startNode;
+
+        for (let i: number = 0; i < values.length; i++) {
+            values[i] = currentNode.value;
+            currentNode = currentNode.next;
+        }
+
+        return values;
+    }
+
+    public static getFivePathNodes(): PathNode[] {
+        let centerNode: PathNode = new PathNode(5,5);
+        let upperNode: PathNode = new PathNode(5,4);
+        let rightNode: PathNode = new PathNode(6,5);
+        let bottomNode: PathNode = new PathNode(5,6);
+        let leftNode: PathNode = new PathNode(4,5);
+
+        return [centerNode, upperNode, rightNode, bottomNode, leftNode];
     }
 }
 

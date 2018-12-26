@@ -20,7 +20,7 @@ var PriorityQueueList = /** @class */ (function (_super) {
     function PriorityQueueList() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    PriorityQueueList.prototype.insert = function (element, priority) {
+    PriorityQueueList.prototype.enqueue = function (element, priority) {
         var nodeNumber = 0;
         if (this._startNode !== undefined) {
             var currentNode = this._startNode;
@@ -62,25 +62,52 @@ var PriorityQueueList = /** @class */ (function (_super) {
         this.count++;
     };
     PriorityQueueList.prototype.dequeue = function () {
-        var minValue = this._lastNode.value;
+        var highestPriorityElement = this._lastNode.value;
         this.removeLast();
-        this.count--;
-        return minValue;
+        return highestPriorityElement;
     };
     PriorityQueueList.prototype.remove = function (element) {
         var previousNode;
         var currentNode = this._startNode;
-        while (currentNode !== undefined) {
-            previousNode = currentNode;
-            currentNode = currentNode.next;
-            // @ts-ignore
-            if (currentNode.value.equals(element)) {
-                currentNode.next.previous = previousNode;
-                previousNode.next = currentNode.next;
-                break;
+        // @ts-ignore
+        if (this._lastNode.value.equals(element)) { // deletion at the front
+            var noPrevious = this._lastNode.previous === undefined;
+            if (noPrevious) {
+                this._lastNode = undefined;
+                this._startNode = this._lastNode;
+            }
+            else { // reference previous.next to undefined
+                this._lastNode.previous.next = undefined;
+                this._lastNode = this._lastNode.previous; // new last node
+            }
+            this.count--;
+        }
+        // @ts-ignore
+        else if (this._startNode.value.equals(element)) { // deletion at the back
+            var noNext = this._startNode.next === undefined;
+            if (noNext) {
+                this._startNode = undefined;
+                this._lastNode = this._startNode;
+            }
+            else { // reference previous.next to undefined
+                this._startNode.next.previous = undefined;
+                this._startNode = this._startNode.next; // new start node
+            }
+            this.count--;
+        }
+        else {
+            while (currentNode !== undefined) {
+                // @ts-ignore
+                if (currentNode.value.equals(element)) {
+                    currentNode.next.previous = previousNode;
+                    previousNode.next = currentNode.next;
+                    this.count--;
+                    break;
+                }
+                previousNode = currentNode;
+                currentNode = currentNode.next;
             }
         }
-        this.count--;
     };
     PriorityQueueList.prototype.front = function () {
         return this._lastNode.value;
@@ -91,11 +118,11 @@ var PriorityQueueList = /** @class */ (function (_super) {
     PriorityQueueList.prototype.contains = function (element) {
         var currentNode = this._startNode;
         while (currentNode !== undefined) {
-            currentNode = currentNode.next;
             // @ts-ignore
             if (currentNode.value.equals(element)) {
                 return true;
             }
+            currentNode = currentNode.next;
         }
         return false;
     };
