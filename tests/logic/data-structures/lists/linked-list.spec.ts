@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import 'mocha';
 
 import LinkedList from "../../../../source/logic/data-structures/lists/linked-list";
-import TestHelpers from "./test-helpers";
+import TestHelpers from "../../../test-helpers";
 
 
 describe('Linked List', () => {
@@ -15,6 +15,7 @@ describe('Linked List', () => {
         testList.append(8);
         testList.insert(10, 1);
 
+        expect(testList.count).to.equal(4);
         expect(TestHelpers.getLinkedListValues(testList.root, 4)).to.deep.equal([5, 6, 10, 8]);
     });
 
@@ -23,6 +24,7 @@ describe('Linked List', () => {
 
         testList.insert(10, 0);
 
+        expect(testList.count).to.equal(1);
         expect(TestHelpers.getLinkedListValues(testList.root, 1)).to.deep.equal([10]);
     });
 
@@ -34,6 +36,7 @@ describe('Linked List', () => {
         testList.append(8);
         testList.insert(10, 2);
 
+        expect(testList.count).to.equal(4);
         expect(TestHelpers.getLinkedListValues(testList.root, 4)).to.deep.equal([5, 6, 8, 10]);
     });
 
@@ -45,6 +48,7 @@ describe('Linked List', () => {
         testList.append(8);
         testList.insert(10, 3);
 
+        expect(testList.count).to.equal(3);
         expect(TestHelpers.getLinkedListValues(testList.root, 3)).to.deep.equal([5, 6, 8]);
     });
 
@@ -56,6 +60,7 @@ describe('Linked List', () => {
         testList.append(8);
         testList.delete(1);
 
+        expect(testList.count).to.equal(2);
         expect(TestHelpers.getLinkedListValues(testList.root, 2)).to.deep.equal([5, 8]);
     });
 
@@ -67,6 +72,7 @@ describe('Linked List', () => {
         testList.append(8);
         testList.delete(0);
 
+        expect(testList.count).to.equal(2);
         expect(TestHelpers.getLinkedListValues(testList.root, 2)).to.deep.equal([6, 8]);
     });
 
@@ -78,6 +84,7 @@ describe('Linked List', () => {
         testList.append(8);
         testList.delete(2);
 
+        expect(testList.count).to.equal(2);
         expect(TestHelpers.getLinkedListValues(testList.root, 2)).to.deep.equal([5, 6]);
     });
 });

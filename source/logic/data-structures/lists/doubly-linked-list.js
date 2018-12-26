@@ -13,27 +13,13 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var data_structure_1 = require("../data-structure");
 var node_1 = require("../node");
+var doubly_linked_structure_1 = require("../doubly-linked-structure");
 var DoublyLinkedList = /** @class */ (function (_super) {
     __extends(DoublyLinkedList, _super);
     function DoublyLinkedList() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(DoublyLinkedList.prototype, "root", {
-        get: function () {
-            return this._startNode;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DoublyLinkedList.prototype, "leaf", {
-        get: function () {
-            return this._lastNode;
-        },
-        enumerable: true,
-        configurable: true
-    });
     DoublyLinkedList.prototype.append = function (value) {
         if (this._startNode === undefined) {
             this._startNode = new node_1.default(value);
@@ -86,31 +72,7 @@ var DoublyLinkedList = /** @class */ (function (_super) {
             this.count--;
         }
     };
-    DoublyLinkedList.prototype.removeFirst = function () {
-        if (this.count > 0) {
-            this._startNode = this._startNode.next;
-            if (this._startNode !== null) {
-                this._startNode.previous = undefined;
-            }
-            if (this.count === 1) { // change pointer of lastNode
-                this._lastNode = undefined;
-            }
-            this.count--;
-        }
-    };
-    DoublyLinkedList.prototype.removeLast = function () {
-        if (this.count > 0) {
-            this._lastNode = this._lastNode.previous;
-            if (this._lastNode !== null) {
-                this._lastNode.next = undefined;
-            }
-            if (this.count === 1) { // change pointer of firstNode
-                this._startNode = undefined;
-            }
-            this.count--;
-        }
-    };
     return DoublyLinkedList;
-}(data_structure_1.default));
+}(doubly_linked_structure_1.default));
 exports.default = DoublyLinkedList;
 //# sourceMappingURL=doubly-linked-list.js.map
