@@ -2,29 +2,7 @@ import { expect } from 'chai';
 import 'mocha';
 
 import DoublyLinkedList from "../../../../source/logic/data-structures/lists/doubly-linked-list";
-import Node from "../../../../source/logic/data-structures/node";
-
-function getAllValues(list: DoublyLinkedList<number>, count: number, fromRightEnd?: boolean): number[] {
-    let values: number[] = new Array(count);
-
-    if (fromRightEnd) {
-        let currentNode: Node<number> = list.leaf;
-
-        for (let i: number = values.length - 1; i >= 0; i--) {
-            values[i] = currentNode.value;
-            currentNode = currentNode.previous;
-        }
-    } else {
-        let currentNode: Node<number> = list.root;
-
-        for (let i: number = 0; i < values.length; i++) {
-            values[i] = currentNode.value;
-            currentNode = currentNode.next;
-        }
-    }
-
-    return values;
-}
+import TestHelpers from "./test-helpers";
 
 describe('Doubly Linked List', () => {
 
@@ -36,8 +14,8 @@ describe('Doubly Linked List', () => {
         testList.append(8);
         testList.insert(10, 1);
 
-        expect(getAllValues(testList, 4)).to.deep.equal([5, 6, 10, 8]);
-        expect(getAllValues(testList, 4, true)).to.deep.equal([5, 6, 10, 8]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 4)).to.deep.equal([5, 6, 10, 8]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 4, true)).to.deep.equal([5, 6, 10, 8]);
     });
 
     it('Inserting in an empty list.', () => {
@@ -45,8 +23,8 @@ describe('Doubly Linked List', () => {
 
         testList.insert(10, 0);
 
-        expect(getAllValues(testList, 1)).to.deep.equal([10]);
-        expect(getAllValues(testList, 1, true)).to.deep.equal([10]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 1)).to.deep.equal([10]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 1, true)).to.deep.equal([10]);
     });
 
     it('Inserting after the last position.', () => {
@@ -57,8 +35,8 @@ describe('Doubly Linked List', () => {
         testList.append(8);
         testList.insert(10, 2);
 
-        expect(getAllValues(testList, 4)).to.deep.equal([5, 6, 8, 10]);
-        expect(getAllValues(testList, 4, true)).to.deep.equal([5, 6, 8, 10]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 4)).to.deep.equal([5, 6, 8, 10]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 4, true)).to.deep.equal([5, 6, 8, 10]);
     });
 
     it('Inserting at a non-existent too high position.', () => {
@@ -69,8 +47,8 @@ describe('Doubly Linked List', () => {
         testList.append(8);
         testList.insert(10, 3);
 
-        expect(getAllValues(testList, 3)).to.deep.equal([5, 6, 8]);
-        expect(getAllValues(testList, 3, true)).to.deep.equal([5, 6, 8]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 3)).to.deep.equal([5, 6, 8]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 3, true)).to.deep.equal([5, 6, 8]);
     });
 
     it('Delete somewhere inside.', () => {
@@ -81,8 +59,8 @@ describe('Doubly Linked List', () => {
         testList.append(8);
         testList.delete(1);
 
-        expect(getAllValues(testList, 2)).to.deep.equal([5, 8]);
-        expect(getAllValues(testList, 2, true)).to.deep.equal([5, 8]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 2)).to.deep.equal([5, 8]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 2, true)).to.deep.equal([5, 8]);
     });
 
     it('Delete at the start.', () => {
@@ -93,8 +71,8 @@ describe('Doubly Linked List', () => {
         testList.append(8);
         testList.delete(0);
 
-        expect(getAllValues(testList, 2)).to.deep.equal([6, 8]);
-        expect(getAllValues(testList, 2, true)).to.deep.equal([6, 8]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 2)).to.deep.equal([6, 8]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 2, true)).to.deep.equal([6, 8]);
     });
 
     it('Delete at the end.', () => {
@@ -105,7 +83,7 @@ describe('Doubly Linked List', () => {
         testList.append(8);
         testList.delete(2);
 
-        expect(getAllValues(testList, 2)).to.deep.equal([5, 6]);
-        expect(getAllValues(testList, 2, true)).to.deep.equal([5, 6]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 2)).to.deep.equal([5, 6]);
+        expect(TestHelpers.getDoublyLinkedListValues(testList, 2, true)).to.deep.equal([5, 6]);
     });
 });

@@ -21,16 +21,43 @@ var PriorityQueueList = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     PriorityQueueList.prototype.insert = function (element, priority) {
-        var currentNode = this._startNode;
-        while (currentNode !== null) {
-            if (priority >= currentNode.priority) {
-                var oldNextNode = currentNode.next;
-                var newNode = new node_1.default(element, oldNextNode, currentNode);
-                currentNode.next.previous = newNode;
-                currentNode.next = newNode;
-                break;
+        var nodeNumber = 0;
+        if (this._startNode !== undefined) {
+            var currentNode = this._startNode;
+            var previousNode = void 0;
+            // iterate over all positions until a position is found
+            // at which the new elements' priority is bigger than/equal the position right of it
+            while (currentNode !== undefined) {
+                // @ts-ignore
+                if (priority >= currentNode.priority) {
+                    var newNode = new node_1.default(element);
+                    newNode.priority = priority;
+                    newNode.previous = currentNode.previous;
+                    newNode.next = currentNode;
+                    if (currentNode.previous !== undefined) {
+                        currentNode.previous.next = newNode;
+                    }
+                    currentNode.previous = newNode;
+                    if (nodeNumber === 0) { // insertion at the first place
+                        this._startNode = newNode;
+                    }
+                    break;
+                }
+                previousNode = currentNode;
+                currentNode = currentNode.next;
+                nodeNumber++;
             }
-            currentNode = currentNode.next;
+            if (currentNode === undefined) { // inserting at the last position
+                var newNode = new node_1.default(element, undefined, previousNode);
+                newNode.priority = priority;
+                previousNode.next = newNode;
+                this._lastNode = newNode;
+            }
+        }
+        else { // case: no node is contained in the list
+            this._startNode = new node_1.default(element);
+            this._startNode.priority = priority;
+            this._lastNode = this._startNode;
         }
         this.count++;
     };
@@ -43,7 +70,7 @@ var PriorityQueueList = /** @class */ (function (_super) {
     PriorityQueueList.prototype.remove = function (element) {
         var previousNode;
         var currentNode = this._startNode;
-        while (currentNode !== null) {
+        while (currentNode !== undefined) {
             previousNode = currentNode;
             currentNode = currentNode.next;
             // @ts-ignore
@@ -62,6 +89,15 @@ var PriorityQueueList = /** @class */ (function (_super) {
         return this._lastNode.priority;
     };
     PriorityQueueList.prototype.contains = function (element) {
+        var currentNode = this._startNode;
+        while (currentNode !== undefined) {
+            currentNode = currentNode.next;
+            // @ts-ignore
+            if (currentNode.value.equals(element)) {
+                return true;
+            }
+        }
+        return false;
     };
     return PriorityQueueList;
 }(doubly_linked_list_1.default));
