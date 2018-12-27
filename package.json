@@ -2,7 +2,8 @@
   "name": "Algorithms",
   "version": "1.0.0",
   "dependencies": {
-    "typescript": "^3.1.6"
+    "typescript": "^3.1.6",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
