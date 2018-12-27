@@ -50,4 +50,4 @@ var Node = /** @class */ (function () {
     return Node;
 }());
 exports.default = Node;
-//# sourceMappingURL=node.js.map
+//# sourceMappingURL=path-node.js.map

@@ -1,4 +1,4 @@
-import Map from "../../../scene/world/map";
+import Map from "../../../../scene/world/map";
 
 export default class Explorer {
     protected _graph: Map;

@@ -3,5 +3,5 @@
 # ide
 /.idea/
 
-# node.js
+# path-node.js
 /node_modules/

@@ -8,9 +8,13 @@ var Pathfinder = /** @class */ (function () {
         this._distanceCalculator = tools.distanceCalculator;
         this._explorer = tools.explorer;
     }
-    Pathfinder.prototype.clearDataStructures = function () {
-        this._closedNodes.clear();
-        this._openNodes.clear();
+    Pathfinder.prototype.empty = function (closedNodes, openNodes) {
+        closedNodes.clear();
+        openNodes.clear();
+    };
+    Pathfinder.prototype.initNodes = function (start, end) {
+        this._startNode = this._map.nodes[start.y][start.x];
+        this._startNode.previous = this._startNode;
     };
     return Pathfinder;
 }());

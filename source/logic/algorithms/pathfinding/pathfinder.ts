@@ -1,17 +1,19 @@
 import ArraySet from "../../data-structures/sets/array-set";
 import Distance from "../../math/distance";
+import Explorer from "./arrangement/explorer";
 import ListPriorityQueue from "../../data-structures/queues/list-priority-queue";
 import Map from "../../../scene/world/map";
-import Explorer from "./explorer";
-import {Tools} from "./pathing-manager";
+import Path from "./arrangement/path";
+import PathNode from "./arrangement/path-node";
 import Vector from "../../math/vector";
-import Path from "./path";
+
+import {Tools} from "./pathing-manager";
 
 export default abstract class Pathfinder {
     protected _map: Map;
 
-    protected _startPos: Vector;
-    protected _endPos: Vector;
+    protected _startNode: PathNode;
+    protected _finishNode: PathNode;
 
     // data structures
     protected _closedNodes: ArraySet<Vector>;
@@ -31,10 +33,15 @@ export default abstract class Pathfinder {
         this._explorer = tools.explorer;
     }
 
-    public abstract route(): Path;
+    public abstract getRoute(start: Vector, end:Vector): Path;
 
-    protected clearDataStructures(): void {
-        this._closedNodes.clear();
-        this._openNodes.clear();
+    protected empty(closedNodes: ArraySet<Vector>, openNodes: ListPriorityQueue<Vector>): void {
+        closedNodes.clear();
+        openNodes.clear();
+    }
+
+    protected initNodes(start: Vector, end: Vector): void {
+        this._startNode = this._map.nodes[start.y][start.x];
+        this._startNode.previous = this._startNode;
     }
 }

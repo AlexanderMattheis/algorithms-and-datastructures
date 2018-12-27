@@ -2,7 +2,7 @@ import ArraySet from "../../data-structures/sets/array-set";
 import Distance from "../../math/distance";
 import ListPriorityQueue from "../../data-structures/queues/list-priority-queue";
 import Vector from "../../math/vector";
-import Explorer from "./explorer";
+import Explorer from "./arrangement/explorer";
 
 /**
  * Allows to change the Pathfinder and many more.
