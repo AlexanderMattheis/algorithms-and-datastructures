@@ -1,6 +1,7 @@
 //import FileReader from "../../system/io/file-reader";
 import Map from "./map";
 import Symbols from "../../../source/system/symbols";
+import TypeConverter from "../../system/typing/type-converter";
 
 export default class MapLoader {
     public load(path: string): Map {
@@ -16,7 +17,7 @@ export default class MapLoader {
         return map;
     }
 
-    public readInMap(path: string): object {
+    private readInMap(path: string): object {
         // let fileReader: FileReader = new FileReader();
         // let mapData: string = fileReader.readInFile(path);
 
@@ -43,7 +44,7 @@ export default class MapLoader {
 
         let width: number = 0;
         let height: number = 0;
-        let collisionMap: boolean[][] = [];
+        let collisionMap: object = {};
 
         let pos: number = 0;
         let i: number = 0;
@@ -51,24 +52,24 @@ export default class MapLoader {
 
         while(pos < map.length) {
             if (map.charAt(pos) === Symbols.Map.unblocked) {
-                collisionMap[i][j] = false;
+                collisionMap[[i,j].toString()] = false;
                 j++;
             } else if (map.charAt(pos) === Symbols.Map.newLine) {
                 i++;
                 j = 0;
             } else {
-                collisionMap[i][j] = true;
+                collisionMap[[i,j].toString()] = true;
                 j++;
             }
 
             pos++;
 
             if (pos === map.length - 1) {
-                height = i;
-                width = j;
+                height = i + 1;
+                width = j + 1;
             }
         }
-        
-        return {height: height, width: width, collisionMap: collisionMap};
+
+        return {height: height, width: width, collisionMap: new TypeConverter().to2DArray(collisionMap, height, width)};
     }
 }

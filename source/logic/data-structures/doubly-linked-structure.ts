@@ -1,6 +1,6 @@
 import DataStructure from "./data-structure";
 import Node from "./node";
-import {Equality} from "../../system/interfaces/equality";
+import {Equality} from "../../system/typing/equality";
 
 export default class DoublyLinkedStructure<T extends Equality<T>> extends DataStructure<T> {
     protected _startNode: Node<T>;

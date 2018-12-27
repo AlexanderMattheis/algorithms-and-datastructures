@@ -8,7 +8,7 @@ import Explorer from "./explorer";
  * Allows to change the Pathfinder and many more.
  */
 export default class PathingManager {
-    private tools;
+    private tools: Tools;
 
     public constructor() {
         this.tools = new Tools();
@@ -43,4 +43,4 @@ export class Tools {
     public get explorer(): Explorer {
         return this._explorer;
     }
-};
+}

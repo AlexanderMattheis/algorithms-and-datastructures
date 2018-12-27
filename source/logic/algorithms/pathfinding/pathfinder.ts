@@ -8,7 +8,7 @@ import Vector from "../../math/vector";
 import Path from "./path";
 
 export default abstract class Pathfinder {
-    protected _graph: Map;
+    protected _map: Map;
 
     protected _startPos: Vector;
     protected _endPos: Vector;
@@ -21,8 +21,8 @@ export default abstract class Pathfinder {
     protected _distanceCalculator: Distance;
     protected _explorer: Explorer;
 
-    public constructor(graph: Map, tools: Tools) {
-        this._graph = graph;
+    public constructor(map: Map, tools: Tools) {
+        this._map = map;
 
         this._closedNodes = tools.closedNodes;
         this._openNodes = tools.openNodes;

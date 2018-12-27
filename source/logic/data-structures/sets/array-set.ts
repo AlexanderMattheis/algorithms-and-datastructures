@@ -1,5 +1,5 @@
 import DataStructure from "../data-structure";
-import {Equality} from "../../../system/interfaces/equality";
+import {Equality} from "../../../system/typing/equality";
 
 export default class ArraySet<T extends Equality<T>> extends DataStructure<T> {
     private _array: T[];
@@ -32,10 +32,6 @@ export default class ArraySet<T extends Equality<T>> extends DataStructure<T> {
     }
 
     public contains(element: T) {
-        if (this.indexOf(this._array, element) >= 0) {
-            return true;
-        }
-
-        return false;
+        return this.indexOf(this._array, element) >= 0;
     }
 }

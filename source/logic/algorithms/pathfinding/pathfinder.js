@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Pathfinder = /** @class */ (function () {
-    function Pathfinder(graph, tools) {
-        this._graph = graph;
+    function Pathfinder(map, tools) {
+        this._map = map;
         this._closedNodes = tools.closedNodes;
         this._openNodes = tools.openNodes;
         this._distanceCalculator = tools.distanceCalculator;

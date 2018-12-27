@@ -1,6 +1,6 @@
 import Node from "../node";
 import DoublyLinkedStructure from "../doubly-linked-structure";
-import {Equality} from "../../../system/interfaces/equality";
+import {Equality} from "../../../system/typing/equality";
 
 export default class ListPriorityQueue<T extends Equality<T>> extends DoublyLinkedStructure<T> {
 
@@ -95,6 +95,7 @@ export default class ListPriorityQueue<T extends Equality<T>> extends DoublyLink
             while(currentNode !== undefined) {
                 // @ts-ignore
                 if (currentNode.value.equals(element)) {
+                    // hint: the previous node definitely exists since it is the "inner"-case
                     currentNode.next.previous = previousNode;
                     previousNode.next = currentNode.next;
                     this.count--;

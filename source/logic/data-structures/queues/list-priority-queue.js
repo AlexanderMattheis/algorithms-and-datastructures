@@ -99,6 +99,7 @@ var ListPriorityQueue = /** @class */ (function (_super) {
             while (currentNode !== undefined) {
                 // @ts-ignore
                 if (currentNode.value.equals(element)) {
+                    // hint: the previous node definitely exists since it is the "inner"-case
                     currentNode.next.previous = previousNode;
                     previousNode.next = currentNode.next;
                     this.count--;

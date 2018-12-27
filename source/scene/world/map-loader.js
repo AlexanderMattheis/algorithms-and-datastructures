@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //import FileReader from "../../system/io/file-reader";
 var map_1 = require("./map");
 var symbols_1 = require("../../../source/system/symbols");
+var type_converter_1 = require("../../system/typing/type-converter");
 var MapLoader = /** @class */ (function () {
     function MapLoader() {
     }
@@ -39,13 +40,13 @@ var MapLoader = /** @class */ (function () {
             ".................................";
         var width = 0;
         var height = 0;
-        var collisionMap = [];
+        var collisionMap = {};
         var pos = 0;
         var i = 0;
         var j = 0;
         while (pos < map.length) {
             if (map.charAt(pos) === symbols_1.default.Map.unblocked) {
-                collisionMap[i][j] = false;
+                collisionMap[[i, j].toString()] = false;
                 j++;
             }
             else if (map.charAt(pos) === symbols_1.default.Map.newLine) {
@@ -53,16 +54,16 @@ var MapLoader = /** @class */ (function () {
                 j = 0;
             }
             else {
-                collisionMap[i][j] = true;
+                collisionMap[[i, j].toString()] = true;
                 j++;
             }
             pos++;
             if (pos === map.length - 1) {
-                height = i;
-                width = j;
+                height = i + 1;
+                width = j + 1;
             }
         }
-        return { height: height, width: width, collisionMap: collisionMap };
+        return { height: height, width: width, collisionMap: new type_converter_1.default().to2DArray(collisionMap, height, width) };
     };
     return MapLoader;
 }());

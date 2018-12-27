@@ -39,10 +39,7 @@ var ArraySet = /** @class */ (function (_super) {
         this._array = [];
     };
     ArraySet.prototype.contains = function (element) {
-        if (this.indexOf(this._array, element) >= 0) {
-            return true;
-        }
-        return false;
+        return this.indexOf(this._array, element) >= 0;
     };
     return ArraySet;
 }(data_structure_1.default));

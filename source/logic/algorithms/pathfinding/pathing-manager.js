@@ -47,5 +47,4 @@ var Tools = /** @class */ (function () {
     return Tools;
 }());
 exports.Tools = Tools;
-;
 //# sourceMappingURL=pathing-manager.js.map
