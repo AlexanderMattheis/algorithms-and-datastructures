@@ -1,4 +1,4 @@
-export default class GraphNode {
+export default class Vector {
     private _x: number;
     private _y: number;
 
@@ -7,7 +7,7 @@ export default class GraphNode {
         this.y = y;
     }
 
-    public equals(element: GraphNode) {
+    public equals(element: Vector) {
         if (this.x === element.x && this.y === element.y) {
             return true;
         }

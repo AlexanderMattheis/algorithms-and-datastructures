@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var chai_1 = require("chai");
 require("mocha");
-var graph_node_1 = require("../../../../source/logic/algorithms/pathfinding/graph-node");
+var vector_1 = require("../../../../source/logic/math/vector");
 var test_helpers_1 = require("../../../test-helpers");
 describe('List Priority Queue', function () {
     it('Inserting elements.', function () {
@@ -31,7 +31,7 @@ describe('List Priority Queue', function () {
         var nodes = test_helpers_1.default.getFivePathNodes();
         var testQueue = test_helpers_1.default.fillQueue(nodes);
         // 'equals' checks only for equality of x and y, such that 'bottomNode' with position (5,6) will be removed
-        testQueue.remove(new graph_node_1.default(5, 6));
+        testQueue.remove(new vector_1.default(5, 6));
         chai_1.expect(testQueue.count).to.equal(4);
         chai_1.expect(test_helpers_1.default.getDoublyLinkedListValues(testQueue, 4))
             .to.deep.equal([nodes[2], nodes[4], nodes[0], nodes[1]]);
@@ -61,7 +61,7 @@ describe('List Priority Queue', function () {
     it('Removing non-existent.', function () {
         var nodes = test_helpers_1.default.getFivePathNodes();
         var testQueue = test_helpers_1.default.fillQueue(nodes);
-        testQueue.remove(new graph_node_1.default(5, 2));
+        testQueue.remove(new vector_1.default(5, 2));
         chai_1.expect(testQueue.count).to.equal(5);
         chai_1.expect(test_helpers_1.default.getDoublyLinkedListValues(testQueue, 5))
             .to.deep.equal([nodes[2], nodes[4], nodes[3], nodes[0], nodes[1]]);
@@ -71,7 +71,7 @@ describe('List Priority Queue', function () {
     it("Testing 'contains'-operation.", function () {
         var nodes = test_helpers_1.default.getFivePathNodes();
         var testQueue = test_helpers_1.default.fillQueue(nodes);
-        chai_1.expect(testQueue.contains(new graph_node_1.default(5, 2))).to.equal(false);
+        chai_1.expect(testQueue.contains(new vector_1.default(5, 2))).to.equal(false);
         chai_1.expect(testQueue.contains(nodes[0])).to.equal(true);
         chai_1.expect(testQueue.contains(nodes[1])).to.equal(true);
         chai_1.expect(testQueue.contains(nodes[2])).to.equal(true);

@@ -35,6 +35,9 @@ var ArraySet = /** @class */ (function (_super) {
         }
         return -1;
     };
+    ArraySet.prototype.clear = function () {
+        this._array = [];
+    };
     ArraySet.prototype.contains = function (element) {
         if (this.indexOf(this._array, element) >= 0) {
             return true;

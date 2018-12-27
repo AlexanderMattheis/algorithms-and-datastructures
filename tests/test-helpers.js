@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var graph_node_1 = require("../source/logic/algorithms/pathfinding/graph-node");
+var vector_1 = require("../source/logic/math/vector");
 var list_priority_queue_1 = require("../source/logic/data-structures/queues/list-priority-queue");
 var TestHelpers = /** @class */ (function () {
     function TestHelpers() {
@@ -42,11 +42,11 @@ var TestHelpers = /** @class */ (function () {
         return values;
     };
     TestHelpers.getFivePathNodes = function () {
-        var centerNode = new graph_node_1.default(5, 5);
-        var upperNode = new graph_node_1.default(5, 4);
-        var rightNode = new graph_node_1.default(6, 5);
-        var bottomNode = new graph_node_1.default(5, 6);
-        var leftNode = new graph_node_1.default(4, 5);
+        var centerNode = new vector_1.default(5, 5);
+        var upperNode = new vector_1.default(5, 4);
+        var rightNode = new vector_1.default(6, 5);
+        var bottomNode = new vector_1.default(5, 6);
+        var leftNode = new vector_1.default(4, 5);
         return [centerNode, upperNode, rightNode, bottomNode, leftNode];
     };
     return TestHelpers;

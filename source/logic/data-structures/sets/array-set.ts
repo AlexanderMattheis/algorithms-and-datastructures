@@ -1,5 +1,5 @@
 import DataStructure from "../data-structure";
-import {Equality} from "../../../system/equality";
+import {Equality} from "../../../system/interfaces/equality";
 
 export default class ArraySet<T extends Equality<T>> extends DataStructure<T> {
     private _array: T[];
@@ -25,6 +25,10 @@ export default class ArraySet<T extends Equality<T>> extends DataStructure<T> {
         }
 
         return -1;
+    }
+
+    public clear(): void {
+        this._array = [];
     }
 
     public contains(element: T) {

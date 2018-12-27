@@ -115,6 +115,10 @@ var ListPriorityQueue = /** @class */ (function (_super) {
     ListPriorityQueue.prototype.frontPriority = function () {
         return this._lastNode.priority;
     };
+    ListPriorityQueue.prototype.clear = function () {
+        this._startNode = undefined;
+        this._lastNode = undefined;
+    };
     return ListPriorityQueue;
 }(doubly_linked_structure_1.default));
 exports.default = ListPriorityQueue;

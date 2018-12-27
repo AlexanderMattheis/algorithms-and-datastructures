@@ -1,12 +1,12 @@
 import DoublyLinkedList from "../source/logic/data-structures/lists/doubly-linked-list";
 import Node from "../source/logic/data-structures/node";
-import GraphNode from "../source/logic/algorithms/pathfinding/graph-node";
+import Vector from "../source/logic/math/vector";
 import ListPriorityQueue from "../source/logic/data-structures/queues/list-priority-queue";
 import DoublyLinkedStructure from "../source/logic/data-structures/doubly-linked-structure";
 
 export default class TestHelpers {
-    public static fillQueue(nodes: GraphNode[]): ListPriorityQueue<GraphNode> {
-        let testQueue: ListPriorityQueue<GraphNode> = new ListPriorityQueue();
+    public static fillQueue(nodes: Vector[]): ListPriorityQueue<Vector> {
+        let testQueue: ListPriorityQueue<Vector> = new ListPriorityQueue();
 
         testQueue.enqueue(nodes[0], 2);
         testQueue.enqueue(nodes[1], 1);
@@ -52,12 +52,12 @@ export default class TestHelpers {
         return values;
     }
 
-    public static getFivePathNodes(): GraphNode[] {
-        let centerNode: GraphNode = new GraphNode(5,5);
-        let upperNode: GraphNode = new GraphNode(5,4);
-        let rightNode: GraphNode = new GraphNode(6,5);
-        let bottomNode: GraphNode = new GraphNode(5,6);
-        let leftNode: GraphNode = new GraphNode(4,5);
+    public static getFivePathNodes(): Vector[] {
+        let centerNode: Vector = new Vector(5,5);
+        let upperNode: Vector = new Vector(5,4);
+        let rightNode: Vector = new Vector(6,5);
+        let bottomNode: Vector = new Vector(5,6);
+        let leftNode: Vector = new Vector(4,5);
 
         return [centerNode, upperNode, rightNode, bottomNode, leftNode];
     }

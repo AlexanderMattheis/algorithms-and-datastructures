@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var GraphNode = /** @class */ (function () {
-    function GraphNode(x, y) {
+var Vector = /** @class */ (function () {
+    function Vector(x, y) {
         this.x = x;
         this.y = y;
     }
-    GraphNode.prototype.equals = function (element) {
+    Vector.prototype.equals = function (element) {
         if (this.x === element.x && this.y === element.y) {
             return true;
         }
         return false;
     };
-    Object.defineProperty(GraphNode.prototype, "x", {
+    Object.defineProperty(Vector.prototype, "x", {
         get: function () {
             return this._x;
         },
@@ -21,7 +21,7 @@ var GraphNode = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(GraphNode.prototype, "y", {
+    Object.defineProperty(Vector.prototype, "y", {
         get: function () {
             return this._y;
         },
@@ -31,7 +31,7 @@ var GraphNode = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    return GraphNode;
+    return Vector;
 }());
-exports.default = GraphNode;
-//# sourceMappingURL=graph-node.js.map
+exports.default = Vector;
+//# sourceMappingURL=vector.js.map

@@ -1,6 +1,6 @@
 import Node from "../node";
 import DoublyLinkedStructure from "../doubly-linked-structure";
-import {Equality} from "../../../system/equality";
+import {Equality} from "../../../system/interfaces/equality";
 
 export default class ListPriorityQueue<T extends Equality<T>> extends DoublyLinkedStructure<T> {
 
@@ -113,5 +113,10 @@ export default class ListPriorityQueue<T extends Equality<T>> extends DoublyLink
 
     public frontPriority(): number {
         return this._lastNode.priority;
+    }
+
+    public clear(): void {
+        this._startNode = undefined;
+        this._lastNode = undefined;
     }
 }

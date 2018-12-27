@@ -1,6 +1,6 @@
 import Node from "../node";
 import DoublyLinkedStructure from "../doubly-linked-structure";
-import {Equality} from "../../../system/equality";
+import {Equality} from "../../../system/interfaces/equality";
 
 export default class DoublyLinkedList<T extends Equality<T>> extends DoublyLinkedStructure<T> {
 
