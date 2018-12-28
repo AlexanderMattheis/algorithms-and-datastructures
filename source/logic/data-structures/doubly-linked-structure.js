@@ -36,7 +36,7 @@ var DoublyLinkedStructure = /** @class */ (function (_super) {
     DoublyLinkedStructure.prototype.contains = function (element) {
         var currentNode = this._startNode;
         while (currentNode !== undefined) {
-            if (currentNode.value.equals(element)) {
+            if (currentNode.value === element) { // test if pointing to same reference
                 return true;
             }
             currentNode = currentNode.next;

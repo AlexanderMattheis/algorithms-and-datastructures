@@ -3,7 +3,7 @@ import 'mocha';
 
 import ListQueue from '../../../../source/logic/data-structures/queues/list-queue';
 
-describe('List Queue', () => {
+describe('Data-Structure - List Queue', () => {
 
     it('Adding elements.', () => {
         let testQueue: ListQueue<number> = new ListQueue();  // size: 5 !

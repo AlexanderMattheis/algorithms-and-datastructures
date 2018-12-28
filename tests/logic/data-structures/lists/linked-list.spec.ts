@@ -4,8 +4,7 @@ import 'mocha';
 import LinkedList from "../../../../source/logic/data-structures/lists/linked-list";
 import TestHelpers from "../../../test-helpers";
 
-
-describe('Linked List', () => {
+describe('Data-Structure - Linked List', () => {
 
     it('Inserting somewhere inside.', () => {
         let testList: LinkedList<number> = new LinkedList();  // size: 5 !

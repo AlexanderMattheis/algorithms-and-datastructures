@@ -3,7 +3,7 @@ import 'mocha';
 
 import ArrayStack from '../../../../source/logic/data-structures/stacks/array-stack';
 
-describe('Array Stack', () => {
+describe('Data-Structure - Array Stack', () => {
 
     it('Adding too many elements.', () => {
         let testStack: ArrayStack<number> = new ArrayStack(5);  // size: 5 !

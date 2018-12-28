@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var chai_1 = require("chai");
 require("mocha");
 var list_queue_1 = require("../../../../source/logic/data-structures/queues/list-queue");
-describe('List Queue', function () {
+describe('Data-Structure - List Queue', function () {
     it('Adding elements.', function () {
         var testQueue = new list_queue_1.default(); // size: 5 !
         chai_1.expect(testQueue.front()).to.equal(null);

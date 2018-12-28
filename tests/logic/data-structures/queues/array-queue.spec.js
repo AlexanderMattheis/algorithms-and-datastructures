@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var chai_1 = require("chai");
 require("mocha");
 var array_queue_1 = require("../../../../source/logic/data-structures/queues/array-queue");
-describe('Array Queue', function () {
+describe('Data-Structure - Array Queue', function () {
     it('Adding too many elements.', function () {
         var testQueue = new array_queue_1.default(5); // size: 5 !
         chai_1.expect(testQueue.front()).to.equal(null);

@@ -1,8 +1,7 @@
 import DataStructure from "../data-structure";
-import {Equality} from "../../../system/typing/equality";
 import Defaults from "../../../system/defaults";
 
-export default class ArraySet<T extends Equality<T>> extends DataStructure<T> {
+export default class ArraySet<T> extends DataStructure<T> {
     private _array: T[];
 
     public constructor() {
@@ -20,7 +19,7 @@ export default class ArraySet<T extends Equality<T>> extends DataStructure<T> {
     private indexOf(array: T[], element: T): number {
         for (let i: number = 0; i < array.length; i++) {
 
-            if (array[i].equals(element)) {
+            if (array[i] === element) {
                 return i;
             }
         }

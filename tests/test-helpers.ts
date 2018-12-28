@@ -1,4 +1,3 @@
-import DoublyLinkedList from "../source/logic/data-structures/lists/doubly-linked-list";
 import Node from "../source/logic/data-structures/node";
 import Vector from "../source/logic/math/vector";
 import ListPriorityQueue from "../source/logic/data-structures/queues/list-priority-queue";
@@ -17,7 +16,7 @@ export default class TestHelpers {
         return testQueue;
     }
 
-    public static getDoublyLinkedListValues<T extends Vector>(list: DoublyLinkedStructure<T>, count: number, fromRightEnd?: boolean): T[] {
+    public static getDoublyLinkedListValues<T>(list: DoublyLinkedStructure<T>, count: number, fromRightEnd?: boolean): T[] {
         let values: T[] = new Array(count);
 
         if (fromRightEnd) {

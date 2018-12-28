@@ -2,7 +2,7 @@ import Node from "../node";
 import DoublyLinkedStructure from "../doubly-linked-structure";
 import {Equality} from "../../../system/typing/equality";
 
-export default class ListQueue<T extends Equality<T>> extends DoublyLinkedStructure<T> {
+export default class ListQueue<T> extends DoublyLinkedStructure<T> {
 
     public enqueue(element: T): void {
         if (this._startNode === undefined) {

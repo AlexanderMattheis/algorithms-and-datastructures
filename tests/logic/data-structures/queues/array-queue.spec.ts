@@ -3,7 +3,7 @@ import 'mocha';
 
 import ArrayQueue from '../../../../source/logic/data-structures/queues/array-queue';
 
-describe('Array Queue', () => {
+describe('Data-Structure - Array Queue', () => {
 
     it('Adding too many elements.', () => {
         let testQueue: ArrayQueue<number> = new ArrayQueue(5);  // size: 5 !

@@ -4,7 +4,7 @@ var chai_1 = require("chai");
 require("mocha");
 var linked_list_1 = require("../../../../source/logic/data-structures/lists/linked-list");
 var test_helpers_1 = require("../../../test-helpers");
-describe('Linked List', function () {
+describe('Data-Structure - Linked List', function () {
     it('Inserting somewhere inside.', function () {
         var testList = new linked_list_1.default(); // size: 5 !
         testList.append(5);

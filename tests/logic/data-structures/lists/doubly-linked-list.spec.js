@@ -4,7 +4,7 @@ var chai_1 = require("chai");
 require("mocha");
 var doubly_linked_list_1 = require("../../../../source/logic/data-structures/lists/doubly-linked-list");
 var test_helpers_1 = require("../../../test-helpers");
-describe('Doubly Linked List', function () {
+describe('Data-Structure - Doubly Linked List', function () {
     it('Inserting somewhere inside.', function () {
         var testList = new doubly_linked_list_1.default(); // size: 5 !
         testList.append(5);

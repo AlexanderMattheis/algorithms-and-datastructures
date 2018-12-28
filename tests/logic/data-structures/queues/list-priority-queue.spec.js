@@ -4,7 +4,7 @@ var chai_1 = require("chai");
 require("mocha");
 var vector_1 = require("../../../../source/logic/math/vector");
 var test_helpers_1 = require("../../../test-helpers");
-describe('List Priority Queue', function () {
+describe('Data-Structure - List Priority Queue', function () {
     it('Inserting elements.', function () {
         var vectors = test_helpers_1.default.getFiveVectors();
         var testQueue = test_helpers_1.default.fillQueue(vectors);

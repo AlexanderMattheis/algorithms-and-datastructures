@@ -1,8 +1,7 @@
 import DataStructure from "./data-structure";
 import Node from "./node";
-import {Equality} from "../../system/typing/equality";
 
-export default class DoublyLinkedStructure<T extends Equality<T>> extends DataStructure<T> {
+export default class DoublyLinkedStructure<T> extends DataStructure<T> {
     protected _startNode: Node<T>;
     protected _lastNode: Node<T>;
 
@@ -19,7 +18,7 @@ export default class DoublyLinkedStructure<T extends Equality<T>> extends DataSt
 
         while(currentNode !== undefined) {
 
-            if (currentNode.value.equals(element)) {
+            if (currentNode.value === element) {  // test if pointing to same reference
                 return true;
             }
 

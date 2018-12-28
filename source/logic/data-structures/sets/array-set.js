@@ -30,7 +30,7 @@ var ArraySet = /** @class */ (function (_super) {
     };
     ArraySet.prototype.indexOf = function (array, element) {
         for (var i = 0; i < array.length; i++) {
-            if (array[i].equals(element)) {
+            if (array[i] === element) {
                 return i;
             }
         }

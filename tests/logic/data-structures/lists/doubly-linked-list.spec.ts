@@ -4,7 +4,7 @@ import 'mocha';
 import DoublyLinkedList from "../../../../source/logic/data-structures/lists/doubly-linked-list";
 import TestHelpers from "../../../test-helpers";
 
-describe('Doubly Linked List', () => {
+describe('Data-Structure - Doubly Linked List', () => {
 
     it('Inserting somewhere inside.', () => {
         let testList: DoublyLinkedList<number> = new DoublyLinkedList();  // size: 5 !

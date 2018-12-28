@@ -5,7 +5,7 @@ import ListPriorityQueue from "../../../../source/logic/data-structures/queues/l
 import Vector from "../../../../source/logic/math/vector";
 import TestHelpers from "../../../test-helpers";
 
-describe('List Priority Queue', () => {
+describe('Data-Structure - List Priority Queue', () => {
 
     it('Inserting elements.', () => {
         let vectors: Vector[] = TestHelpers.getFiveVectors();
