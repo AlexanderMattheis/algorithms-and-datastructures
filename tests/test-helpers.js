@@ -5,13 +5,13 @@ var list_priority_queue_1 = require("../source/logic/data-structures/queues/list
 var TestHelpers = /** @class */ (function () {
     function TestHelpers() {
     }
-    TestHelpers.fillQueue = function (nodes) {
+    TestHelpers.fillQueue = function (vectors) {
         var testQueue = new list_priority_queue_1.default();
-        testQueue.enqueue(nodes[0], 2);
-        testQueue.enqueue(nodes[1], 1);
-        testQueue.enqueue(nodes[2], 3.5);
-        testQueue.enqueue(nodes[3], 2.4);
-        testQueue.enqueue(nodes[4], 3.2);
+        testQueue.enqueue(vectors[0], 2);
+        testQueue.enqueue(vectors[1], 1);
+        testQueue.enqueue(vectors[2], 3.5);
+        testQueue.enqueue(vectors[3], 2.4);
+        testQueue.enqueue(vectors[4], 3.2);
         return testQueue;
     };
     TestHelpers.getDoublyLinkedListValues = function (list, count, fromRightEnd) {
@@ -41,13 +41,13 @@ var TestHelpers = /** @class */ (function () {
         }
         return values;
     };
-    TestHelpers.getFivePathNodes = function () {
-        var centerNode = new vector_1.default(5, 5);
-        var upperNode = new vector_1.default(5, 4);
-        var rightNode = new vector_1.default(6, 5);
-        var bottomNode = new vector_1.default(5, 6);
-        var leftNode = new vector_1.default(4, 5);
-        return [centerNode, upperNode, rightNode, bottomNode, leftNode];
+    TestHelpers.getFiveVectors = function () {
+        var center = new vector_1.default(5, 5);
+        var upper = new vector_1.default(5, 4);
+        var right = new vector_1.default(6, 5);
+        var bottom = new vector_1.default(5, 6);
+        var left = new vector_1.default(4, 5);
+        return [center, upper, right, bottom, left];
     };
     return TestHelpers;
 }());

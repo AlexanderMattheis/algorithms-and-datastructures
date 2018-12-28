@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import ArrayStack from '../../../source/logic/data-structures/stacks/array-stack';
+import ArrayStack from '../../../../source/logic/data-structures/stacks/array-stack';
 
 describe('Array Stack', () => {
 

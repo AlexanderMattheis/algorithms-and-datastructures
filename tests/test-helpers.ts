@@ -5,19 +5,19 @@ import ListPriorityQueue from "../source/logic/data-structures/queues/list-prior
 import DoublyLinkedStructure from "../source/logic/data-structures/doubly-linked-structure";
 
 export default class TestHelpers {
-    public static fillQueue(nodes: Vector[]): ListPriorityQueue<Vector> {
+    public static fillQueue(vectors: Vector[]): ListPriorityQueue<Vector> {
         let testQueue: ListPriorityQueue<Vector> = new ListPriorityQueue();
 
-        testQueue.enqueue(nodes[0], 2);
-        testQueue.enqueue(nodes[1], 1);
-        testQueue.enqueue(nodes[2], 3.5);
-        testQueue.enqueue(nodes[3], 2.4);
-        testQueue.enqueue(nodes[4], 3.2);
+        testQueue.enqueue(vectors[0], 2);
+        testQueue.enqueue(vectors[1], 1);
+        testQueue.enqueue(vectors[2], 3.5);
+        testQueue.enqueue(vectors[3], 2.4);
+        testQueue.enqueue(vectors[4], 3.2);
 
         return testQueue;
     }
 
-    public static getDoublyLinkedListValues<T>(list: DoublyLinkedStructure<T>, count: number, fromRightEnd?: boolean): T[] {
+    public static getDoublyLinkedListValues<T extends Vector>(list: DoublyLinkedStructure<T>, count: number, fromRightEnd?: boolean): T[] {
         let values: T[] = new Array(count);
 
         if (fromRightEnd) {
@@ -52,14 +52,14 @@ export default class TestHelpers {
         return values;
     }
 
-    public static getFivePathNodes(): Vector[] {
-        let centerNode: Vector = new Vector(5,5);
-        let upperNode: Vector = new Vector(5,4);
-        let rightNode: Vector = new Vector(6,5);
-        let bottomNode: Vector = new Vector(5,6);
-        let leftNode: Vector = new Vector(4,5);
+    public static getFiveVectors(): Vector[] {
+        let center: Vector = new Vector(5,5);
+        let upper: Vector = new Vector(5,4);
+        let right: Vector = new Vector(6,5);
+        let bottom: Vector = new Vector(5,6);
+        let left: Vector = new Vector(4,5);
 
-        return [centerNode, upperNode, rightNode, bottomNode, leftNode];
+        return [center, upper, right, bottom, left];
     }
 }
 
