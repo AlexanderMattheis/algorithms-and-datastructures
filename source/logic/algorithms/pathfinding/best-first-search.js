@@ -15,6 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var path_1 = require("./arrangement/path");
 var pathfinder_1 = require("./pathfinder");
+var distance_1 = require("../../math/distance");
 var BestFirstSearch = /** @class */ (function (_super) {
     __extends(BestFirstSearch, _super);
     function BestFirstSearch() {
@@ -36,6 +37,35 @@ var BestFirstSearch = /** @class */ (function (_super) {
             this.expand(node);
         }
         return null;
+    };
+    BestFirstSearch.prototype.expand = function (node) {
+        var neighbours = this._explorer.getNeighbours(node);
+        for (var i = 0; i < neighbours.length; i++) {
+            var newNode = neighbours[i];
+            if (!this._closedNodes.contains(newNode)) {
+                if (!this._openNodes.contains(newNode)) { // create new
+                    newNode.previous = null;
+                    newNode.exactDistanceFromStart = Number.MAX_VALUE;
+                }
+                // "else:" just recalculate the distance from the start for the new node
+                this.recalcDistToStart(node, newNode);
+            }
+        }
+    };
+    BestFirstSearch.prototype.updateDistance = function (node, newNode, newDistanceToStart) {
+        if (newDistanceToStart < newNode.exactDistanceFromStart) {
+            newNode.previous = node;
+            newNode.exactDistanceFromStart = newDistanceToStart;
+            this.updateOrAdd(newNode);
+        }
+    };
+    BestFirstSearch.prototype.updateOrAdd = function (newNode) {
+        if (this._openNodes.contains(newNode)) {
+            this._openNodes.remove(newNode);
+        }
+        var estimatedDistance = newNode.exactDistanceFromStart
+            + this._distanceCalculator.getLength(newNode.fieldPos, this._finishNode.fieldPos, distance_1.DistanceType.Euclidean);
+        this._openNodes.enqueue(newNode, estimatedDistance);
     };
     return BestFirstSearch;
 }(pathfinder_1.default));

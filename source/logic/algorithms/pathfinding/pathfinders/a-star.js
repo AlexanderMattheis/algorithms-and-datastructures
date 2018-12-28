@@ -15,43 +15,17 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var best_first_search_1 = require("../best-first-search");
 var distance_1 = require("../../../math/distance");
-var aStar = /** @class */ (function (_super) {
-    __extends(aStar, _super);
-    function aStar() {
+var AStar = /** @class */ (function (_super) {
+    __extends(AStar, _super);
+    function AStar() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    aStar.prototype.expand = function (node) {
-        var neighbours = this._explorer.getNeighbours(node);
-        for (var i = 0; i < neighbours.length; i++) {
-            var newNode = neighbours[i];
-            if (!this._closedNodes.contains(newNode)) {
-                if (!this._openNodes.contains(newNode)) { // create new
-                    newNode.previous = null;
-                    newNode.exactDistanceFromStart = Number.MAX_VALUE;
-                }
-                // "else:" just recalculate the distance from the start for the new node
-                this.recalcDistToStart(node, newNode);
-            }
-        }
-    };
-    aStar.prototype.recalcDistToStart = function (node, newNode) {
+    AStar.prototype.recalcDistToStart = function (node, newNode) {
         var newDistanceToStart = node.exactDistanceFromStart
             + this._distanceCalculator.getLength(node.fieldPos, newNode.fieldPos, distance_1.DistanceType.Edge);
-        if (newDistanceToStart < newNode.exactDistanceFromStart) {
-            newNode.previous = node;
-            newNode.exactDistanceFromStart = newDistanceToStart;
-            this.updateOrAdd(newNode);
-        }
+        this.updateDistance(node, newNode, newDistanceToStart);
     };
-    aStar.prototype.updateOrAdd = function (newNode) {
-        if (this._openNodes.contains(newNode)) {
-            this._openNodes.remove(newNode);
-        }
-        var estimatedDistance = newNode.exactDistanceFromStart
-            + this._distanceCalculator.getLength(newNode.fieldPos, this._finishNode.fieldPos, distance_1.DistanceType.Euclidean);
-        this._openNodes.enqueue(newNode, estimatedDistance);
-    };
-    return aStar;
+    return AStar;
 }(best_first_search_1.default));
-exports.default = aStar;
+exports.default = AStar;
 //# sourceMappingURL=a-star.js.map
