@@ -49,10 +49,10 @@ export default class Map {
             nodes[i] = [];
 
             for (let j: number = 0; j < width; j++) {
-                nodes[i][j] = new PathNode(this, i, j);
+                nodes[i][j] = new PathNode(i, j);
             }
         }
 
-        return null;
+        return nodes;
     }
 }

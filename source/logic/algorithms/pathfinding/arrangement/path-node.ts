@@ -1,15 +1,14 @@
 import Vector from "../../../math/vector";
 import Map from "../../../../scene/world/map";
+import {Equality} from "../../../../system/typing/equality";
 
-export default class PathNode {
+export default class PathNode implements Equality<PathNode> {
     private _exactDistanceFromStart: number;  // g(n) in literature
     private _fieldPos: Vector;
     private _previous: PathNode;
 
-    private _priority: number;  // f(n) = g(n) + h(n)
-
-    public constructor(map: Map, posX, posY) {
-
+    public constructor(posX, posY) {
+        this._fieldPos = new Vector(posX, posY);
     }
 
     public get exactDistanceFromStart(): number {
@@ -24,10 +23,6 @@ export default class PathNode {
         return this._previous;
     }
 
-    public get priority(): number {
-        return this._priority;
-    }
-
     public set exactDistanceFromStart(value: number) {
         this._exactDistanceFromStart = value;
     }
@@ -36,7 +31,7 @@ export default class PathNode {
         this._previous = value;
     }
 
-    public set priority(value: number) {
-        this._priority = value;
+    public equals(pathNode: PathNode) {
+        return this._fieldPos.equals(pathNode._fieldPos);
     }
 }

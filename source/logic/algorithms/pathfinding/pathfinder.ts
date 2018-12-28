@@ -16,8 +16,8 @@ export default abstract class Pathfinder {
     protected _finishNode: PathNode;
 
     // data structures
-    protected _closedNodes: ArraySet<Vector>;
-    protected _openNodes: ListPriorityQueue<Vector>;
+    protected _closedNodes: ArraySet<PathNode>;
+    protected _openNodes: ListPriorityQueue<PathNode>;
 
     // tools
     protected _distanceCalculator: Distance;
@@ -33,9 +33,9 @@ export default abstract class Pathfinder {
         this._explorer = tools.explorer;
     }
 
-    public abstract getRoute(start: Vector, end:Vector): Path;
+    public abstract getRoute(start: Vector, end:Vector): PathNode[];
 
-    protected empty(closedNodes: ArraySet<Vector>, openNodes: ListPriorityQueue<Vector>): void {
+    protected empty(closedNodes: ArraySet<PathNode>, openNodes: ListPriorityQueue<PathNode>): void {
         closedNodes.clear();
         openNodes.clear();
     }
@@ -43,5 +43,7 @@ export default abstract class Pathfinder {
     protected initNodes(start: Vector, end: Vector): void {
         this._startNode = this._map.nodes[start.y][start.x];
         this._startNode.previous = this._startNode;
+
+        this._finishNode = this._map.nodes[end.x][end.y];
     }
 }

@@ -41,10 +41,10 @@ var Map = /** @class */ (function () {
         for (var i = 0; i < height; i++) {
             nodes[i] = [];
             for (var j = 0; j < width; j++) {
-                nodes[i][j] = new path_node_1.default(this, i, j);
+                nodes[i][j] = new path_node_1.default(i, j);
             }
         }
-        return null;
+        return nodes;
     };
     return Map;
 }());

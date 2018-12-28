@@ -1,4 +1,5 @@
 import Map from "../../../../scene/world/map";
+import PathNode from "./path-node";
 
 export default class Explorer {
     protected _graph: Map;
@@ -7,10 +8,7 @@ export default class Explorer {
         this._graph = graph;
     }
 
-}
-
-export class QuadExplorer extends Explorer {
-}
-
-export class OctaExplorer extends Explorer {
+    public getNeighbours(): PathNode[] {
+        return [];
+    }
 }

@@ -3,6 +3,7 @@ import Distance from "../../math/distance";
 import ListPriorityQueue from "../../data-structures/queues/list-priority-queue";
 import Vector from "../../math/vector";
 import Explorer from "./arrangement/explorer";
+import PathNode from "./arrangement/path-node";
 
 /**
  * Allows to change the Pathfinder and many more.
@@ -18,8 +19,8 @@ export default class PathingManager {
 export class Tools {
     //<editor-fold desc="Properties">
     // data structures
-    private _closedNodes: ArraySet<Vector>;
-    private _openNodes: ListPriorityQueue<Vector>;
+    private _closedNodes: ArraySet<PathNode>;
+    private _openNodes: ListPriorityQueue<PathNode>;
 
     // tools
     private _distanceCalculator: Distance;
@@ -27,11 +28,11 @@ export class Tools {
     //</editor-fold>
 
     // data structures
-    public get closedNodes(): ArraySet<Vector> {
+    public get closedNodes(): ArraySet<PathNode> {
         return this._closedNodes;
     }
 
-    public get openNodes():  ListPriorityQueue<Vector> {
+    public get openNodes():  ListPriorityQueue<PathNode> {
         return this._openNodes;
     }
 
