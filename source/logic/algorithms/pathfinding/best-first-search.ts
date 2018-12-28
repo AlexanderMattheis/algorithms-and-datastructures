@@ -6,7 +6,7 @@ import PathNode from "./arrangement/path-node";
 export default abstract class BestFirstSearch extends Pathfinder {
 
     public getRoute(start: Vector, end:Vector): PathNode[] {
-        if (this._map.collision[end.x, end.y]) return null;
+        if (this._map.collision[end.x][end.y]) return null;
 
         this.empty(this._closedNodes, this._openNodes);
         this.initNodes(start, end);

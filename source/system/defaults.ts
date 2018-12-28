@@ -1,3 +1,5 @@
 export default {
-    error: -1
+    Error: {
+        notContained: -1
+    },
 }

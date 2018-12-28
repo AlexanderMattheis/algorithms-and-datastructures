@@ -1,11 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var array_set_1 = require("./data-structures/sets/array-set");
+var distance_1 = require("./math/distance");
+var list_priority_queue_1 = require("./data-structures/queues/list-priority-queue");
+var explorer_1 = require("./algorithms/pathfinding/arrangement/explorer");
 /**
  * Allows to change the Pathfinder and many more.
  */
 var PathingManager = /** @class */ (function () {
-    function PathingManager() {
-        this._tools = new Tools();
+    function PathingManager(map) {
+        this._tools = new Tools(map);
     }
     Object.defineProperty(PathingManager.prototype, "tools", {
         get: function () {
@@ -18,10 +22,14 @@ var PathingManager = /** @class */ (function () {
 }());
 exports.default = PathingManager;
 var Tools = /** @class */ (function () {
-    function Tools() {
+    //</editor-fold>
+    function Tools(map) {
+        this._closedNodes = new array_set_1.default();
+        this._openNodes = new list_priority_queue_1.default();
+        this._distanceCalculator = new distance_1.default();
+        this._explorer = new explorer_1.default(map);
     }
     Object.defineProperty(Tools.prototype, "closedNodes", {
-        //</editor-fold>
         // data structures
         get: function () {
             return this._closedNodes;

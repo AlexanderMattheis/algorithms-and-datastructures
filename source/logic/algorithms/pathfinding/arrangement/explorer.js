@@ -42,7 +42,7 @@ var Explorer = /** @class */ (function () {
         //  |o| | |
         //  -------
         //  | | | |
-        if (!blockedBottom) {
+        if (!blockedLeft) {
             neighbours.push(this._map.nodes[node.fieldPos.x - 1][node.fieldPos.y]);
         }
         return neighbours;

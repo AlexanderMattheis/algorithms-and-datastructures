@@ -3,6 +3,7 @@ import Distance from "./math/distance";
 import ListPriorityQueue from "./data-structures/queues/list-priority-queue";
 import Explorer from "./algorithms/pathfinding/arrangement/explorer";
 import PathNode from "./algorithms/pathfinding/arrangement/path-node";
+import Map from "../scene/world/map";
 
 /**
  * Allows to change the Pathfinder and many more.
@@ -10,8 +11,8 @@ import PathNode from "./algorithms/pathfinding/arrangement/path-node";
 export default class PathingManager {
     private _tools: Tools;
 
-    public constructor() {
-        this._tools = new Tools();
+    public constructor(map: Map) {
+        this._tools = new Tools(map);
     }
 
     public get tools(): Tools {
@@ -29,6 +30,14 @@ export class Tools {
     private _distanceCalculator: Distance;
     private _explorer: Explorer;
     //</editor-fold>
+
+    public constructor(map: Map) {
+        this._closedNodes = new ArraySet<PathNode>();
+        this._openNodes = new ListPriorityQueue<PathNode>();
+
+        this._distanceCalculator = new Distance();
+        this._explorer = new Explorer(map);
+    }
 
     // data structures
     public get closedNodes(): ArraySet<PathNode> {

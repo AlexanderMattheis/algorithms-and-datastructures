@@ -21,7 +21,7 @@ var BestFirstSearch = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     BestFirstSearch.prototype.getRoute = function (start, end) {
-        if (this._map.collision[end.x, end.y])
+        if (this._map.collision[end.x][end.y])
             return null;
         this.empty(this._closedNodes, this._openNodes);
         this.initNodes(start, end);

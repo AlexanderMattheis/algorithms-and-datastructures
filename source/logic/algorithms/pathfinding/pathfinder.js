@@ -13,7 +13,7 @@ var Pathfinder = /** @class */ (function () {
         openNodes.clear();
     };
     Pathfinder.prototype.initNodes = function (start, end) {
-        this._startNode = this._map.nodes[start.y][start.x];
+        this._startNode = this._map.nodes[start.x][start.y];
         this._startNode.previous = this._startNode;
         this._finishNode = this._map.nodes[end.x][end.y];
     };

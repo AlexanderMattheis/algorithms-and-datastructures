@@ -49,7 +49,7 @@ export default class DoublyLinkedStructure<T extends Equality<T>> extends DataSt
         if (this.count > 0) {
             this._lastNode = this._lastNode.previous;
 
-            if (this._lastNode !== null) {
+            if (this._lastNode !== undefined) {
                 this._lastNode.next = undefined;
             }
 

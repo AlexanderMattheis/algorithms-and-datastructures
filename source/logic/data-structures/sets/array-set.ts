@@ -1,5 +1,6 @@
 import DataStructure from "../data-structure";
 import {Equality} from "../../../system/typing/equality";
+import Defaults from "../../../system/defaults";
 
 export default class ArraySet<T extends Equality<T>> extends DataStructure<T> {
     private _array: T[];
@@ -10,7 +11,7 @@ export default class ArraySet<T extends Equality<T>> extends DataStructure<T> {
     }
 
     public add(element: T): void {
-        if (this.indexOf(this._array, element) >= 0) {
+        if (this.indexOf(this._array, element) === Defaults.Error.notContained) {
             this._array.push(element);
             this.count++;
         }
@@ -24,11 +25,12 @@ export default class ArraySet<T extends Equality<T>> extends DataStructure<T> {
             }
         }
 
-        return -1;
+        return Defaults.Error.notContained;
     }
 
     public clear(): void {
         this._array = [];
+        this._count = 0;
     }
 
     public contains(element: T) {

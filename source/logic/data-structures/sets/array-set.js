@@ -14,6 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var data_structure_1 = require("../data-structure");
+var defaults_1 = require("../../../system/defaults");
 var ArraySet = /** @class */ (function (_super) {
     __extends(ArraySet, _super);
     function ArraySet() {
@@ -22,7 +23,7 @@ var ArraySet = /** @class */ (function (_super) {
         return _this;
     }
     ArraySet.prototype.add = function (element) {
-        if (this.indexOf(this._array, element) >= 0) {
+        if (this.indexOf(this._array, element) === defaults_1.default.Error.notContained) {
             this._array.push(element);
             this.count++;
         }
@@ -33,10 +34,11 @@ var ArraySet = /** @class */ (function (_super) {
                 return i;
             }
         }
-        return -1;
+        return defaults_1.default.Error.notContained;
     };
     ArraySet.prototype.clear = function () {
         this._array = [];
+        this._count = 0;
     };
     ArraySet.prototype.contains = function (element) {
         return this.indexOf(this._array, element) >= 0;

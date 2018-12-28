@@ -11,7 +11,7 @@ var MapLoader = /** @class */ (function () {
         // read in
         var mapData = this.readInMap(path);
         // @ts-ignore: create
-        var map = new map_1.default(mapData.height, mapData.width);
+        var map = new map_1.default(mapData.width, mapData.height);
         // @ts-ignore
         map.collision = mapData.collisionMap;
         return map;
@@ -42,28 +42,28 @@ var MapLoader = /** @class */ (function () {
         var height = 0;
         var collisionMap = {};
         var pos = 0;
-        var i = 0;
-        var j = 0;
+        var x = 0;
+        var y = 0;
         while (pos < map.length) {
             if (map.charAt(pos) === symbols_1.default.Map.unblocked) {
-                collisionMap[[i, j].toString()] = false;
-                j++;
+                collisionMap[[x, y].toString()] = false;
+                x++;
             }
             else if (map.charAt(pos) === symbols_1.default.Map.newLine) {
-                i++;
-                j = 0;
+                y++;
+                x = 0;
             }
             else {
-                collisionMap[[i, j].toString()] = true;
-                j++;
+                collisionMap[[x, y].toString()] = true;
+                x++;
             }
             pos++;
             if (pos === map.length - 1) {
-                height = i + 1;
-                width = j + 1;
+                height = y + 1;
+                width = x + 1;
             }
         }
-        return { height: height, width: width, collisionMap: new type_converter_1.default().to2DArray(collisionMap, height, width) };
+        return { height: height, width: width, collisionMap: new type_converter_1.default().to2DArray(collisionMap, width, height) };
     };
     return MapLoader;
 }());

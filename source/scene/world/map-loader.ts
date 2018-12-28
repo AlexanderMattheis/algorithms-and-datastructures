@@ -9,7 +9,7 @@ export default class MapLoader {
         let mapData: object = this.readInMap(path);
 
         // @ts-ignore: create
-        let map: Map = new Map(mapData.height, mapData.width);
+        let map: Map = new Map(mapData.width, mapData.height);
 
         // @ts-ignore
         map.collision = mapData.collisionMap;
@@ -47,29 +47,29 @@ export default class MapLoader {
         let collisionMap: object = {};
 
         let pos: number = 0;
-        let i: number = 0;
-        let j: number = 0;
+        let x: number = 0;
+        let y: number = 0;
 
         while(pos < map.length) {
             if (map.charAt(pos) === Symbols.Map.unblocked) {
-                collisionMap[[i,j].toString()] = false;
-                j++;
+                collisionMap[[x,y].toString()] = false;
+                x++;
             } else if (map.charAt(pos) === Symbols.Map.newLine) {
-                i++;
-                j = 0;
+                y++;
+                x = 0;
             } else {
-                collisionMap[[i,j].toString()] = true;
-                j++;
+                collisionMap[[x,y].toString()] = true;
+                x++;
             }
 
             pos++;
 
             if (pos === map.length - 1) {
-                height = i + 1;
-                width = j + 1;
+                height = y + 1;
+                width = x + 1;
             }
         }
 
-        return {height: height, width: width, collisionMap: new TypeConverter().to2DArray(collisionMap, height, width)};
+        return {height: height, width: width, collisionMap: new TypeConverter().to2DArray(collisionMap, width, height)};
     }
 }

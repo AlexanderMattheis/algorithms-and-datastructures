@@ -119,6 +119,7 @@ var ListPriorityQueue = /** @class */ (function (_super) {
     ListPriorityQueue.prototype.clear = function () {
         this._startNode = undefined;
         this._lastNode = undefined;
+        this._count = 0;
     };
     return ListPriorityQueue;
 }(doubly_linked_structure_1.default));

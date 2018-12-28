@@ -8,10 +8,10 @@ export default class Map {
     private readonly _height: number;
     private readonly _width: number;
 
-    public constructor(height: number, width: number) {
+    public constructor(width: number, height: number) {
         this._height = height;
         this._width = width;
-        this._nodes = this.getFreshNodes(height, width);
+        this._nodes = this.getFreshNodes(width, height);
     }
 
     public get collision(): boolean[][] {
@@ -42,14 +42,14 @@ export default class Map {
         return posX < 0 || posY < 0 || posX >= this._width || posY >= this._height;
     }
 
-    public getFreshNodes(height: number, width: number): PathNode[][] {
+    public getFreshNodes(width: number, height: number): PathNode[][] {
         let nodes: PathNode[][] = [];
 
-        for (let i: number = 0; i < height; i++) {
-            nodes[i] = [];
+        for (let x: number = 0; x < width; x++) {
+            nodes[x] = [];
 
-            for (let j: number = 0; j < width; j++) {
-                nodes[i][j] = new PathNode(i, j);
+            for (let y: number = 0; y < height; y++) {
+                nodes[x][y] = new PathNode(x, y);
             }
         }
 

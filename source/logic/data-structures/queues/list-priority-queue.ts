@@ -119,5 +119,6 @@ export default class ListPriorityQueue<T extends Equality<T>> extends DoublyLink
     public clear(): void {
         this._startNode = undefined;
         this._lastNode = undefined;
+        this._count = 0;
     }
 }

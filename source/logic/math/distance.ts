@@ -22,7 +22,7 @@ export default class Distance {
             return this.manhattan(start, end);
         }
 
-        return Default.error;
+        return Default.Error.notContained;
     }
 
     private getEdgeLength(start: Vector, end: Vector) {

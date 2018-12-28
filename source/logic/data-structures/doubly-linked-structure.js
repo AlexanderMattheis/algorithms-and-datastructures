@@ -58,7 +58,7 @@ var DoublyLinkedStructure = /** @class */ (function (_super) {
     DoublyLinkedStructure.prototype.removeLast = function () {
         if (this.count > 0) {
             this._lastNode = this._lastNode.previous;
-            if (this._lastNode !== null) {
+            if (this._lastNode !== undefined) {
                 this._lastNode.next = undefined;
             }
             if (this.count === 1) { // change pointer of firstNode

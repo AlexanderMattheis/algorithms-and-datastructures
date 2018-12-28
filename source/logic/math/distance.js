@@ -25,7 +25,7 @@ var Distance = /** @class */ (function () {
         else if (type === DistanceType.Manhattan) {
             return this.manhattan(start, end);
         }
-        return defaults_1.default.error;
+        return defaults_1.default.Error.notContained;
     };
     Distance.prototype.getEdgeLength = function (start, end) {
         var deltaX = end.x - start.x;
