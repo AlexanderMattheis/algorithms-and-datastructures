@@ -7,7 +7,7 @@ import Path from "./arrangement/path";
 import PathNode from "./arrangement/path-node";
 import Vector from "../../math/vector";
 
-import {Tools} from "./pathing-manager";
+import {Tools} from "../../pathing-manager";
 
 export default abstract class Pathfinder {
     protected _map: Map;

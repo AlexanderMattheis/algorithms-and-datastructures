@@ -1,18 +1,21 @@
-import ArraySet from "../../data-structures/sets/array-set";
-import Distance from "../../math/distance";
-import ListPriorityQueue from "../../data-structures/queues/list-priority-queue";
-import Vector from "../../math/vector";
-import Explorer from "./arrangement/explorer";
-import PathNode from "./arrangement/path-node";
+import ArraySet from "./data-structures/sets/array-set";
+import Distance from "./math/distance";
+import ListPriorityQueue from "./data-structures/queues/list-priority-queue";
+import Explorer from "./algorithms/pathfinding/arrangement/explorer";
+import PathNode from "./algorithms/pathfinding/arrangement/path-node";
 
 /**
  * Allows to change the Pathfinder and many more.
  */
 export default class PathingManager {
-    private tools: Tools;
+    private _tools: Tools;
 
     public constructor() {
-        this.tools = new Tools();
+        this._tools = new Tools();
+    }
+
+    public get tools(): Tools {
+        return this._tools;
     }
 }
 

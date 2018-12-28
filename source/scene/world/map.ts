@@ -30,16 +30,16 @@ export default class Map {
         this._nodes = value;
     }
 
-    public isBlocked(position: Vector): boolean {
-        if (this.isOutOfBounds(position)) {
+    public isBlocked(posX: number, posY: number): boolean {
+        if (this.isOutOfBounds(posX, posY)) {
             return true;
         }
 
-        return this._collision[position.x][position.y];
+        return this._collision[posX][posY];
     }
 
-    public isOutOfBounds(position: Vector): boolean {
-        return position.x < 0 || position.y < 0 || position.x >= this._width || position.y >= this._height;
+    public isOutOfBounds(posX: number, posY: number): boolean {
+        return posX < 0 || posY < 0 || posX >= this._width || posY >= this._height;
     }
 
     public getFreshNodes(height: number, width: number): PathNode[][] {

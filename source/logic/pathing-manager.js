@@ -5,8 +5,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var PathingManager = /** @class */ (function () {
     function PathingManager() {
-        this.tools = new Tools();
+        this._tools = new Tools();
     }
+    Object.defineProperty(PathingManager.prototype, "tools", {
+        get: function () {
+            return this._tools;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return PathingManager;
 }());
 exports.default = PathingManager;

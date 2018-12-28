@@ -27,14 +27,14 @@ var Map = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Map.prototype.isBlocked = function (position) {
-        if (this.isOutOfBounds(position)) {
+    Map.prototype.isBlocked = function (posX, posY) {
+        if (this.isOutOfBounds(posX, posY)) {
             return true;
         }
-        return this._collision[position.x][position.y];
+        return this._collision[posX][posY];
     };
-    Map.prototype.isOutOfBounds = function (position) {
-        return position.x < 0 || position.y < 0 || position.x >= this._width || position.y >= this._height;
+    Map.prototype.isOutOfBounds = function (posX, posY) {
+        return posX < 0 || posY < 0 || posX >= this._width || posY >= this._height;
     };
     Map.prototype.getFreshNodes = function (height, width) {
         var nodes = [];

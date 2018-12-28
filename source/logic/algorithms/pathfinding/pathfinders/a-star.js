@@ -21,7 +21,7 @@ var aStar = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     aStar.prototype.expand = function (node) {
-        var neighbours = this._explorer.getNeighbours();
+        var neighbours = this._explorer.getNeighbours(node);
         for (var i = 0; i < neighbours.length; i++) {
             var newNode = neighbours[i];
             if (!this._closedNodes.contains(newNode)) {

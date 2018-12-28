@@ -4,7 +4,7 @@ import {DistanceType} from "../../../math/distance";
 
 export default class aStar extends BestFirstSearch {
     protected expand(node: PathNode): void {
-        let neighbours: PathNode[] = this._explorer.getNeighbours();
+        let neighbours: PathNode[] = this._explorer.getNeighbours(node);
 
         for (let i: number = 0; i < neighbours.length; i++) {
             let newNode: PathNode = neighbours[i];
