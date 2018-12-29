@@ -22,6 +22,14 @@ export default class Map {
         return this._nodes;
     }
 
+    public get height(): number {
+        return this._height;
+    }
+
+    public get width(): number {
+        return this._width;
+    }
+
     public set collision(value: boolean[][]) {
         this._collision = value;
     }

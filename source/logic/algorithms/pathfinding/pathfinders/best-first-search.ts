@@ -6,7 +6,7 @@ import {DistanceType} from "../../../math/distance";
 
 export default abstract class BestFirstSearch extends Pathfinder {
 
-    public getRoute(start: Vector, end:Vector): PathNode[] {
+    public getComputed(start: Vector, end:Vector): PathNode[] {
         if (this._map.collision[end.x][end.y]) return null;
 
         this.empty(this._closedNodes, this._openNodes);

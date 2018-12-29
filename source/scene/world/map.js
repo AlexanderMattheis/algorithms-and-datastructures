@@ -27,6 +27,20 @@ var Map = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Map.prototype, "height", {
+        get: function () {
+            return this._height;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Map.prototype, "width", {
+        get: function () {
+            return this._width;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Map.prototype.isBlocked = function (posX, posY) {
         if (this.isOutOfBounds(posX, posY)) {
             return true;

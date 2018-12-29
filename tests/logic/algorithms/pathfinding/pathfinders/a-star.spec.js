@@ -12,7 +12,7 @@ describe('Algorithm - AStar', function () {
         var map = loader.load("../public/assets/maps/default.map");
         var manager = new pathing_manager_1.default(map);
         var pathFinder = new a_star_1.default(map, manager.tools);
-        var path = pathFinder.getRoute(new vector_1.default(0, 0), new vector_1.default(32, 18));
+        var path = pathFinder.getComputed(new vector_1.default(0, 0), new vector_1.default(32, 18));
         var positions = [
             new vector_1.default(0, 0),
             new vector_1.default(1, 0),

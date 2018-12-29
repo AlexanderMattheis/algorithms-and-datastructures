@@ -15,7 +15,7 @@ describe('Algorithm - AStar', () => {
         let map: Map = loader.load("../public/assets/maps/default.map");
         let manager: PathingManager = new PathingManager(map);
         let pathFinder: AStar = new AStar(map, manager.tools);
-        let path: PathNode[] = pathFinder.getRoute(new Vector(0, 0), new Vector(32, 18));
+        let path: PathNode[] = pathFinder.getComputed(new Vector(0, 0), new Vector(32, 18));
 
         let positions: Vector[] = [
             new Vector(0, 0),

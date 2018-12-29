@@ -33,7 +33,9 @@ export default abstract class Pathfinder {
         this._explorer = tools.explorer;
     }
 
-    public abstract getRoute(start: Vector, end:Vector): PathNode[];
+    public abstract getComputed(start: Vector, end?:Vector): any;
+    protected abstract expand(node: PathNode): void;
+    protected abstract expand(node: PathNode): void;
 
     protected empty(closedNodes: ArraySet<PathNode>, openNodes: ListPriorityQueue<PathNode>): void {
         closedNodes.clear();
