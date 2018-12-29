@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var best_first_search_1 = require("../best-first-search");
+var best_first_search_1 = require("./best-first-search");
 var UniformCostSearch = /** @class */ (function (_super) {
     __extends(UniformCostSearch, _super);
     function UniformCostSearch() {

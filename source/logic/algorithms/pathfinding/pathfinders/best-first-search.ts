@@ -1,8 +1,8 @@
-import Path from "./arrangement/path";
-import Pathfinder from "./pathfinder";
-import Vector from "../../math/vector";
-import PathNode from "./arrangement/path-node";
-import {DistanceType} from "../../math/distance";
+import Path from "../arrangement/path";
+import Pathfinder from "../pathfinder";
+import Vector from "../../../math/vector";
+import PathNode from "../arrangement/path-node";
+import {DistanceType} from "../../../math/distance";
 
 export default abstract class BestFirstSearch extends Pathfinder {
 

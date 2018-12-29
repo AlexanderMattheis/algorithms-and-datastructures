@@ -1,4 +1,4 @@
-import BestFirstSearch from "../best-first-search";
+import BestFirstSearch from "./best-first-search";
 import PathNode from "../arrangement/path-node";
 import {DistanceType} from "../../../math/distance";
 

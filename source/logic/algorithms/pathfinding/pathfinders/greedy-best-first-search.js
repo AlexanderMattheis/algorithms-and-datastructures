@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var best_first_search_1 = require("../best-first-search");
+var best_first_search_1 = require("./best-first-search");
 var distance_1 = require("../../../math/distance");
 var GreedyBestFirstSearch = /** @class */ (function (_super) {
     __extends(GreedyBestFirstSearch, _super);

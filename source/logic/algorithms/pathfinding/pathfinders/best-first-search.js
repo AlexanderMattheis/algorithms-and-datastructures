@@ -13,9 +13,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var path_1 = require("./arrangement/path");
-var pathfinder_1 = require("./pathfinder");
-var distance_1 = require("../../math/distance");
+var path_1 = require("../arrangement/path");
+var pathfinder_1 = require("../pathfinder");
+var distance_1 = require("../../../math/distance");
 var BestFirstSearch = /** @class */ (function (_super) {
     __extends(BestFirstSearch, _super);
     function BestFirstSearch() {
