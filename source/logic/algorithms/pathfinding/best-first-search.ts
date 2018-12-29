@@ -13,7 +13,9 @@ export default abstract class BestFirstSearch extends Pathfinder {
         this.initNodes(start, end);
         this._startNode.exactDistanceFromStart = 0;
 
-        this._openNodes.enqueue(this._startNode, 0);
+        this._openNodes.enqueue(this._startNode,
+            this._startNode.exactDistanceFromStart +
+            this._distanceCalculator.getLength(this._startNode.fieldPos, this._finishNode.fieldPos, DistanceType.Euclidean));
 
         while (!this._openNodes.isEmpty()) {
             let node: PathNode = this._openNodes.dequeue();
@@ -36,8 +38,8 @@ export default abstract class BestFirstSearch extends Pathfinder {
             let newNode: PathNode = neighbours[i];
 
             if (!this._closedNodes.contains(newNode)) {
-                if (!this._openNodes.contains(newNode)) { // create new
-                    newNode.previous = null;
+                if (!this._openNodes.contains(newNode)) {  // create new
+                    // newNode.previous = null;  // presumably not necessary
                     newNode.exactDistanceFromStart = Number.MAX_VALUE;
                 }
                 // "else:" just recalculate the distance from the start for the new node
@@ -46,7 +48,12 @@ export default abstract class BestFirstSearch extends Pathfinder {
         }
     }
 
-    protected abstract recalcDistToStart(node: PathNode, newNode: PathNode): void;
+    protected recalcDistToStart(node: PathNode, newNode: PathNode): void {
+        let newDistanceToStart: number = node.exactDistanceFromStart
+            + this._distanceCalculator.getLength(node.fieldPos, newNode.fieldPos, DistanceType.Edge);
+
+        this.updateDistance(node, newNode, newDistanceToStart);
+    }
 
     protected updateDistance(node: PathNode, newNode: PathNode, newDistanceToStart: number): void {
         if (newDistanceToStart < newNode.exactDistanceFromStart) {
@@ -56,14 +63,5 @@ export default abstract class BestFirstSearch extends Pathfinder {
         }
     }
 
-    protected updateOrAdd(newNode: PathNode): void {
-        if (this._openNodes.contains(newNode)) {
-            this._openNodes.remove(newNode);
-        }
-
-        let estimatedDistance: number = newNode.exactDistanceFromStart
-            + this._distanceCalculator.getLength(newNode.fieldPos, this._finishNode.fieldPos, DistanceType.Euclidean);
-
-        this._openNodes.enqueue(newNode, estimatedDistance);
-    }
+    protected abstract updateOrAdd(newNode: PathNode);
 }

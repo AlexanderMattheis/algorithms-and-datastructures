@@ -20,9 +20,12 @@ var GreedyBestFirstSearch = /** @class */ (function (_super) {
     function GreedyBestFirstSearch() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    GreedyBestFirstSearch.prototype.recalcDistToStart = function (node, newNode) {
-        var newDistanceToStart = this._distanceCalculator.getLength(node.fieldPos, newNode.fieldPos, distance_1.DistanceType.Edge);
-        this.updateDistance(node, newNode, newDistanceToStart);
+    GreedyBestFirstSearch.prototype.updateOrAdd = function (newNode) {
+        if (this._openNodes.contains(newNode)) {
+            this._openNodes.remove(newNode);
+        }
+        var priority = this._distanceCalculator.getLength(newNode.fieldPos, this._finishNode.fieldPos, distance_1.DistanceType.Euclidean);
+        this._openNodes.enqueue(newNode, priority);
     };
     return GreedyBestFirstSearch;
 }(best_first_search_1.default));

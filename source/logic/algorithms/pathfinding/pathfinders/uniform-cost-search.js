@@ -14,15 +14,18 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var best_first_search_1 = require("../best-first-search");
-var GreedyBestFirstSearch = /** @class */ (function (_super) {
-    __extends(GreedyBestFirstSearch, _super);
-    function GreedyBestFirstSearch() {
+var UniformCostSearch = /** @class */ (function (_super) {
+    __extends(UniformCostSearch, _super);
+    function UniformCostSearch() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    GreedyBestFirstSearch.prototype.recalcDistToStart = function (node, newNode) {
-        this.updateDistance(node, newNode, node.exactDistanceFromStart);
+    UniformCostSearch.prototype.updateOrAdd = function (newNode) {
+        if (this._openNodes.contains(newNode)) {
+            this._openNodes.remove(newNode);
+        }
+        this._openNodes.enqueue(newNode, newNode.exactDistanceFromStart);
     };
-    return GreedyBestFirstSearch;
+    return UniformCostSearch;
 }(best_first_search_1.default));
-exports.default = GreedyBestFirstSearch;
+exports.default = UniformCostSearch;
 //# sourceMappingURL=uniform-cost-search.js.map

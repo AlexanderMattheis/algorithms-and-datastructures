@@ -4,10 +4,14 @@ import {DistanceType} from "../../../math/distance";
 
 export default class GreedyBestFirstSearch extends BestFirstSearch {
 
-    protected recalcDistToStart(node: PathNode, newNode: PathNode): void {
-        let newDistanceToStart: number =
-            this._distanceCalculator.getLength(node.fieldPos, newNode.fieldPos, DistanceType.Edge);
+    protected updateOrAdd(newNode: PathNode): void {
+        if (this._openNodes.contains(newNode)) {
+            this._openNodes.remove(newNode);
+        }
 
-        this.updateDistance(node, newNode, newDistanceToStart);
+        let priority: number =
+            this._distanceCalculator.getLength(newNode.fieldPos, this._finishNode.fieldPos, DistanceType.Euclidean);
+
+        this._openNodes.enqueue(newNode, priority);
     }
 }

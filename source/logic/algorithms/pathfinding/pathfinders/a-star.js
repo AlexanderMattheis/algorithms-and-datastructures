@@ -20,10 +20,13 @@ var AStar = /** @class */ (function (_super) {
     function AStar() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    AStar.prototype.recalcDistToStart = function (node, newNode) {
-        var newDistanceToStart = node.exactDistanceFromStart
-            + this._distanceCalculator.getLength(node.fieldPos, newNode.fieldPos, distance_1.DistanceType.Edge);
-        this.updateDistance(node, newNode, newDistanceToStart);
+    AStar.prototype.updateOrAdd = function (newNode) {
+        if (this._openNodes.contains(newNode)) {
+            this._openNodes.remove(newNode);
+        }
+        var priority = newNode.exactDistanceFromStart
+            + this._distanceCalculator.getLength(newNode.fieldPos, this._finishNode.fieldPos, distance_1.DistanceType.Euclidean);
+        this._openNodes.enqueue(newNode, priority);
     };
     return AStar;
 }(best_first_search_1.default));
