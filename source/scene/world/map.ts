@@ -1,5 +1,4 @@
 import PathNode from "../../logic/algorithms/pathfinding/arrangement/path-node";
-import Vector from "../../logic/math/vector";
 
 export default class Map {
     private _collision: boolean[][];

@@ -14,19 +14,32 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var pathfinder_1 = require("../pathfinder");
+var path_1 = require("../arrangement/path");
 var Dijkstra = /** @class */ (function (_super) {
     __extends(Dijkstra, _super);
     function Dijkstra() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * If an end-vector is specified,
+     * the path to the end-vector is returned.
+     * Else an associative array with all distances of
+     * non-blocked nodes is returned.
+     */
     Dijkstra.prototype.getComputed = function (start, end) {
-        this.init(start, this._openNodes);
+        this.init(this._openNodes, start, end);
         while (!this._openNodes.isEmpty()) {
             var node = this._openNodes.dequeue();
+            if (end !== undefined) {
+                if (this._finishNode.equals(node)) {
+                    return new path_1.default().reconstructTo(node);
+                }
+            }
             this.expand(node);
         }
+        return this.getDistances(this._map.nodes);
     };
-    Dijkstra.prototype.init = function (start, priorityQueue) {
+    Dijkstra.prototype.init = function (priorityQueue, start, end) {
         var nonBlockedNode = [];
         for (var posY = 0; posY < this._map.height; posY++) {
             for (var posX = 0; posX < this._map.width; posX++) {
@@ -41,6 +54,11 @@ var Dijkstra = /** @class */ (function (_super) {
                     priorityQueue.enqueue(node, node.exactDistanceFromStart);
                 }
             }
+        }
+        this._startNode = this._map.nodes[start.x][start.y];
+        this._startNode.previous = this._startNode;
+        if (end !== undefined) {
+            this._finishNode = this._map.nodes[end.x][end.y];
         }
     };
     Dijkstra.prototype.expand = function (node) {
@@ -58,6 +76,17 @@ var Dijkstra = /** @class */ (function (_super) {
             newNode.previous = node;
             newNode.exactDistanceFromStart = newDistanceToStart;
         }
+    };
+    Dijkstra.prototype.getDistances = function (nodes) {
+        var distanceForPosition = {};
+        for (var y = 0; y < nodes.length; y++) {
+            for (var x = 0; x < nodes[0].length; x++) {
+                if (!this._map.isBlocked(x, y)) {
+                    distanceForPosition[[x, y].toString()] = nodes[x][y].exactDistanceFromStart;
+                }
+            }
+        }
+        return distanceForPosition;
     };
     return Dijkstra;
 }(pathfinder_1.default));

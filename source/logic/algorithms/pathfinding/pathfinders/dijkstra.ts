@@ -2,19 +2,35 @@ import ListPriorityQueue from "../../../data-structures/queues/list-priority-que
 import Pathfinder from "../pathfinder";
 import PathNode from "../arrangement/path-node";
 import Vector from "../../../math/vector";
+import Path from "../arrangement/path";
 
 export default class Dijkstra extends Pathfinder {
 
-    public getComputed(start: Vector, end:Vector): any {
-        this.init(start, this._openNodes);
+    /**
+     * If an end-vector is specified,
+     * the path to the end-vector is returned.
+     * Else an associative array with all distances of
+     * non-blocked nodes is returned.
+     */
+    public getComputed(start: Vector, end?:Vector): any {
+        this.init(this._openNodes, start, end);
 
         while (!this._openNodes.isEmpty()) {
             let node: PathNode = this._openNodes.dequeue();
+
+            if (end !== undefined) {
+                if (this._finishNode.equals(node)) {
+                    return new Path().reconstructTo(node);
+                }
+            }
+
             this.expand(node);
         }
+
+        return this.getDistances(this._map.nodes);
     }
 
-    private init(start: Vector, priorityQueue: ListPriorityQueue<PathNode>): void {
+    private init(priorityQueue: ListPriorityQueue<PathNode>, start: Vector, end: Vector): void {
         let nonBlockedNode: PathNode[] = [];
 
         for (let posY: number = 0; posY < this._map.height; posY++) {
@@ -31,6 +47,13 @@ export default class Dijkstra extends Pathfinder {
                     priorityQueue.enqueue(node, node.exactDistanceFromStart);
                 }
             }
+        }
+
+        this._startNode = this._map.nodes[start.x][start.y];
+        this._startNode.previous = this._startNode;
+
+        if (end !== undefined) {
+            this._finishNode = this._map.nodes[end.x][end.y];
         }
     }
 
@@ -53,5 +76,19 @@ export default class Dijkstra extends Pathfinder {
             newNode.previous = node;
             newNode.exactDistanceFromStart = newDistanceToStart;
         }
+    }
+
+    private getDistances(nodes: PathNode[][]): object {
+        let distanceForPosition = {};
+
+        for (let y: number = 0; y < nodes.length; y++) {
+            for (let x: number = 0; x < nodes[0].length; x++) {
+                if (!this._map.isBlocked(x, y)) {
+                    distanceForPosition[[x,y].toString()] = nodes[x][y].exactDistanceFromStart;
+                }
+            }
+        }
+
+        return distanceForPosition;
     }
 }

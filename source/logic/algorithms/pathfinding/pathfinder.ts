@@ -35,7 +35,6 @@ export default abstract class Pathfinder {
 
     public abstract getComputed(start: Vector, end?:Vector): any;
     protected abstract expand(node: PathNode): void;
-    protected abstract expand(node: PathNode): void;
 
     protected empty(closedNodes: ArraySet<PathNode>, openNodes: ListPriorityQueue<PathNode>): void {
         closedNodes.clear();
