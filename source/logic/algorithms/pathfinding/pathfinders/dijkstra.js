@@ -15,6 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var pathfinder_1 = require("../pathfinder");
 var path_1 = require("../arrangement/path");
+var distance_1 = require("../../../math/distance");
 var Dijkstra = /** @class */ (function (_super) {
     __extends(Dijkstra, _super);
     function Dijkstra() {
@@ -28,6 +29,7 @@ var Dijkstra = /** @class */ (function (_super) {
      */
     Dijkstra.prototype.getComputed = function (start, end) {
         this.init(this._openNodes, start, end);
+        // let i: number = 1;
         while (!this._openNodes.isEmpty()) {
             var node = this._openNodes.dequeue();
             if (end !== undefined) {
@@ -36,16 +38,17 @@ var Dijkstra = /** @class */ (function (_super) {
                 }
             }
             this.expand(node);
+            // console.log(i);
+            // i++;
         }
         return this.getDistances(this._map.nodes);
     };
     Dijkstra.prototype.init = function (priorityQueue, start, end) {
-        var nonBlockedNode = [];
         for (var posY = 0; posY < this._map.height; posY++) {
             for (var posX = 0; posX < this._map.width; posX++) {
                 if (!this._map.isBlocked(posX, posY)) {
                     var node = this._map.nodes[posX][posY];
-                    if (node === this._startNode) {
+                    if (node.fieldPos.x === start.x && node.fieldPos.y === start.y) {
                         node.exactDistanceFromStart = 0; // to dequeue this node first
                     }
                     else {
@@ -71,16 +74,27 @@ var Dijkstra = /** @class */ (function (_super) {
         }
     };
     Dijkstra.prototype.recalcDistToStart = function (node, newNode) {
-        var newDistanceToStart = node.exactDistanceFromStart;
+        var newDistanceToStart = node.exactDistanceFromStart +
+            this._distanceCalculator.getLength(node.fieldPos, newNode.fieldPos, distance_1.DistanceType.Edge);
+        // if (node.fieldPos.x === 8 && node.fieldPos.y === 5) {
+        //     console.log(node.exactDistanceFromStart);
+        // }
         if (newDistanceToStart < newNode.exactDistanceFromStart) {
             newNode.previous = node;
             newNode.exactDistanceFromStart = newDistanceToStart;
+            this.update(newNode);
+        }
+    };
+    Dijkstra.prototype.update = function (newNode) {
+        if (this._openNodes.contains(newNode)) {
+            this._openNodes.remove(newNode);
+            this._openNodes.enqueue(newNode, newNode.exactDistanceFromStart);
         }
     };
     Dijkstra.prototype.getDistances = function (nodes) {
         var distanceForPosition = {};
-        for (var y = 0; y < nodes.length; y++) {
-            for (var x = 0; x < nodes[0].length; x++) {
+        for (var x = 0; x < nodes.length; x++) {
+            for (var y = 0; y < nodes[0].length; y++) {
                 if (!this._map.isBlocked(x, y)) {
                     distanceForPosition[[x, y].toString()] = nodes[x][y].exactDistanceFromStart;
                 }

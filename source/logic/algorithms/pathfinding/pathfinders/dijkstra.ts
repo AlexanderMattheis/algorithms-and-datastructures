@@ -3,6 +3,7 @@ import Pathfinder from "../pathfinder";
 import PathNode from "../arrangement/path-node";
 import Vector from "../../../math/vector";
 import Path from "../arrangement/path";
+import {DistanceType} from "../../../math/distance";
 
 export default class Dijkstra extends Pathfinder {
 
@@ -15,6 +16,7 @@ export default class Dijkstra extends Pathfinder {
     public getComputed(start: Vector, end?:Vector): any {
         this.init(this._openNodes, start, end);
 
+        // let i: number = 1;
         while (!this._openNodes.isEmpty()) {
             let node: PathNode = this._openNodes.dequeue();
 
@@ -25,20 +27,20 @@ export default class Dijkstra extends Pathfinder {
             }
 
             this.expand(node);
+            // console.log(i);
+            // i++;
         }
 
         return this.getDistances(this._map.nodes);
     }
 
     private init(priorityQueue: ListPriorityQueue<PathNode>, start: Vector, end: Vector): void {
-        let nonBlockedNode: PathNode[] = [];
-
         for (let posY: number = 0; posY < this._map.height; posY++) {
             for (let posX: number = 0; posX < this._map.width; posX++) {
                 if (!this._map.isBlocked(posX, posY)) {
                     let node: PathNode = this._map.nodes[posX][posY];
 
-                    if (node === this._startNode) {
+                    if (node.fieldPos.x === start.x && node.fieldPos.y === start.y) {
                         node.exactDistanceFromStart = 0;  // to dequeue this node first
                     } else {
                         node.exactDistanceFromStart = Number.MAX_VALUE;
@@ -70,19 +72,32 @@ export default class Dijkstra extends Pathfinder {
     }
 
     protected recalcDistToStart(node: PathNode, newNode: PathNode): void {
-        let newDistanceToStart: number = node.exactDistanceFromStart;
+        let newDistanceToStart: number = node.exactDistanceFromStart +
+            this._distanceCalculator.getLength(node.fieldPos, newNode.fieldPos, DistanceType.Edge);
+
+        // if (node.fieldPos.x === 8 && node.fieldPos.y === 5) {
+        //     console.log(node.exactDistanceFromStart);
+        // }
 
         if (newDistanceToStart < newNode.exactDistanceFromStart) {
             newNode.previous = node;
             newNode.exactDistanceFromStart = newDistanceToStart;
+            this.update(newNode);
+        }
+    }
+
+    protected update(newNode: PathNode): void {
+        if (this._openNodes.contains(newNode)) {
+            this._openNodes.remove(newNode);
+            this._openNodes.enqueue(newNode, newNode.exactDistanceFromStart);
         }
     }
 
     private getDistances(nodes: PathNode[][]): object {
         let distanceForPosition = {};
 
-        for (let y: number = 0; y < nodes.length; y++) {
-            for (let x: number = 0; x < nodes[0].length; x++) {
+        for (let x: number = 0; x < nodes.length; x++ ) {
+            for (let y: number = 0; y < nodes[0].length; y++) {
                 if (!this._map.isBlocked(x, y)) {
                     distanceForPosition[[x,y].toString()] = nodes[x][y].exactDistanceFromStart;
                 }

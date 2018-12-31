@@ -6,8 +6,8 @@ var a_star_1 = require("../../../../../source/logic/algorithms/pathfinding/pathf
 var map_loader_1 = require("../../../../../source/scene/world/map-loader");
 var pathing_manager_1 = require("../../../../../source/logic/pathing-manager");
 var vector_1 = require("../../../../../source/logic/math/vector");
-describe('Algorithm - AStar', function () {
-    it('From left top to bottom right.', function () {
+describe('Algorithm - Pathfinding - AStar', function () {
+    it('From top left to bottom right.', function () {
         var loader = new map_loader_1.default();
         var map = loader.load("../public/assets/maps/default.map");
         var manager = new pathing_manager_1.default(map);

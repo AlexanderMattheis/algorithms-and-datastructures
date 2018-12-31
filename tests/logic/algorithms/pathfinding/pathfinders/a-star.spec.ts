@@ -8,9 +8,9 @@ import PathingManager from "../../../../../source/logic/pathing-manager";
 import PathNode from "../../../../../source/logic/algorithms/pathfinding/arrangement/path-node";
 import Vector from "../../../../../source/logic/math/vector";
 
-describe('Algorithm - AStar', () => {
+describe('Algorithm - Pathfinding - AStar', () => {
 
-    it('From left top to bottom right.', () => {
+    it('From top left to bottom right.', () => {
         let loader: MapLoader = new MapLoader();
         let map: Map = loader.load("../public/assets/maps/default.map");
         let manager: PathingManager = new PathingManager(map);
