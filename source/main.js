@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function main() {
-    // let loader: MapLoader = new MapLoader();
+    let loader: MapLoader = new MapLoader();
     // let map: Map = loader.load("../public/assets/maps/default.map");
     // let manager: PathingManager = new PathingManager(map);
     // let pathFinder: Dijkstra = new Dijkstra(map, manager.tools);
